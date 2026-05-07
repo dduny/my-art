@@ -3,880 +3,815 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>✏️ 나의 낙서장</title>
-<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@300;400;700&family=Nanum+Pen+Script&family=Poor+Story&display=swap" rel="stylesheet">
+<title>DDUNY — Art Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --sky: #87CEEB;
-    --deep-sky: #4A9CC7;
-    --cloud: #E8F4FD;
-    --pencil: #2C3E50;
-    --chalk: #F5F0E8;
-    --doodle1: #FF8FAB;
-    --doodle2: #FFD166;
-    --doodle3: #06D6A0;
-    --doodle4: #A29BFE;
-    --paper: #FAFAF7;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --sky: #A8C8E8;
+  --deep: #3A6B8A;
+  --ink: #1A1A2E;
+  --paper: #F8F6F2;
+  --warm: #E8E0D4;
+  --accent: #6B9AB8;
+  --light: #EDF4F9;
+  --white: #ffffff;
+}
 
-  body {
-    background: var(--paper);
-    font-family: 'Gaegu', cursive;
-    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z' fill='%234A9CC7'/%3E%3C/svg%3E"), auto;
-    overflow-x: hidden;
-  }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
-  /* ── 배경 낙서선 ── */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 38px,
-        rgba(135,206,235,0.15) 38px,
-        rgba(135,206,235,0.15) 40px
-      );
-    pointer-events: none;
-    z-index: 0;
-  }
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 56px;
+  background: rgba(248,246,242,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(168,200,232,0.35);
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.45rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.nav-logo span { color: var(--deep); }
+.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-links a {
+  font-size: 0.72rem;
+  letter-spacing: 2.5px;
+  color: var(--ink);
+  text-decoration: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  text-transform: uppercase;
+}
+.nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--deep); }
 
-  /* ── 헤더 ── */
-  header {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: linear-gradient(170deg, #D4EDFA 0%, #E8F6FF 40%, var(--paper) 100%);
-    z-index: 1;
-  }
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 56px;
+}
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 56px 80px 80px;
+  position: relative;
+}
+.hero-left::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 20%; bottom: 20%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, var(--sky) 40%, var(--sky) 60%, transparent);
+}
+.hero-tag {
+  font-size: 0.68rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 20px;
+}
+.hero-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: 10px;
+  color: var(--ink);
+  margin-bottom: 28px;
+  white-space: nowrap;
+}
+.hero-name em { font-style: italic; color: var(--deep); display: inline; }
+.hero-desc {
+  font-size: 0.92rem;
+  line-height: 2.1;
+  color: #666;
+  max-width: 340px;
+  font-weight: 300;
+  margin-bottom: 52px;
+  border-left: 2px solid var(--sky);
+  padding-left: 20px;
+}
+.hero-stats { display: flex; gap: 44px; }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.4rem;
+  font-weight: 300;
+  color: var(--deep);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: #999;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+.hero-right {
+  position: relative;
+  overflow: hidden;
+}
+.hero-right img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.hero-placeholder {
+  width: 100%; height: 100%;
+  min-height: 600px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 10px;
+  background: linear-gradient(160deg, var(--light) 0%, var(--warm) 100%);
+}
+.hero-placeholder span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--accent);
+}
+.hero-placeholder small { font-size: 0.72rem; color: #bbb; letter-spacing: 1px; }
 
-  /* 구름들 */
-  .cloud {
-    position: absolute;
-    background: white;
-    border-radius: 50px;
-    opacity: 0.85;
-    filter: drop-shadow(2px 3px 6px rgba(74,156,199,0.15));
-    animation: floatCloud linear infinite;
-  }
-  .cloud::before, .cloud::after {
-    content: '';
-    position: absolute;
-    background: white;
-    border-radius: 50%;
-  }
-  .cloud-1 { width:120px; height:40px; top:12%; left:-140px; animation-duration:28s; animation-delay:0s; }
-  .cloud-1::before { width:60px; height:60px; top:-30px; left:15px; }
-  .cloud-1::after  { width:40px; height:40px; top:-20px; left:55px; }
-  .cloud-2 { width:80px;  height:28px; top:22%; left:-100px; animation-duration:22s; animation-delay:-8s; opacity:0.6; }
-  .cloud-2::before { width:40px; height:40px; top:-22px; left:10px; }
-  .cloud-2::after  { width:30px; height:30px; top:-15px; left:38px; }
-  .cloud-3 { width:160px; height:50px; top:8%;  left:-180px; animation-duration:35s; animation-delay:-14s; opacity:0.5; }
-  .cloud-3::before { width:80px; height:80px; top:-45px; left:20px; }
-  .cloud-3::after  { width:55px; height:55px; top:-30px; left:75px; }
+/* ── SECTION 공통 ── */
+.section-wrap {
+  padding: 96px 80px;
+}
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 52px;
+}
+.section-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.8rem;
+  color: var(--accent);
+  letter-spacing: 3px;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--ink);
+}
+.section-sub {
+  font-size: 0.75rem;
+  color: #aaa;
+  letter-spacing: 1px;
+  margin-left: auto;
+  align-self: center;
+}
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--sky) 0%, transparent 100%);
+}
 
-  @keyframes floatCloud {
-    from { transform: translateX(0); }
-    to   { transform: translateX(calc(100vw + 220px)); }
-  }
+/* ── 01 WORKS ── */
+#works { background: var(--white); }
 
-  /* 손으로 그린 별들 */
-  .star {
-    position: absolute;
-    font-size: 1.4rem;
-    animation: twinkle 3s ease-in-out infinite;
-    opacity: 0.7;
-  }
-  @keyframes twinkle {
-    0%,100% { transform: scale(1) rotate(0deg); opacity:0.7; }
-    50% { transform: scale(1.3) rotate(15deg); opacity:1; }
-  }
+.works-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: auto;
+  gap: 3px;
+}
+/* 레이아웃: 첫 작품 크게, 나머지 배분 */
+.work-item {
+  position: relative;
+  overflow: hidden;
+  background: var(--light);
+  cursor: pointer;
+}
+.work-item:nth-child(1) { grid-column: span 7; aspect-ratio: 7/5; }
+.work-item:nth-child(2) { grid-column: span 5; aspect-ratio: 5/5; }
+.work-item:nth-child(3) { grid-column: span 4; aspect-ratio: 4/4; }
+.work-item:nth-child(4) { grid-column: span 4; aspect-ratio: 4/4; }
+.work-item:nth-child(5) { grid-column: span 4; aspect-ratio: 4/4; }
 
-  /* 타이틀 */
-  .hero-inner {
-    text-align: center;
-    position: relative;
-    z-index: 2;
-    animation: popIn 0.8s cubic-bezier(0.34,1.56,0.64,1) both;
-  }
-  @keyframes popIn {
-    from { transform: scale(0.7) translateY(30px); opacity:0; }
-    to   { transform: scale(1) translateY(0); opacity:1; }
-  }
+.work-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
+  filter: saturate(0.88) brightness(1.02);
+  display: block;
+}
+.work-item:hover img { transform: scale(1.05); filter: saturate(1.08) brightness(1); }
+.work-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, rgba(26,26,46,0.1) 45%, transparent 100%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  display: flex;
+  align-items: flex-end;
+  padding: 24px 28px;
+}
+.work-item:hover .work-overlay { opacity: 1; }
+.work-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.35rem;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  letter-spacing: 1px;
+}
+.work-placeholder {
+  width: 100%; height: 100%;
+  min-height: 200px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.95rem;
+  background: linear-gradient(135deg, var(--light), var(--warm));
+}
 
-  .title-badge {
-    display: inline-block;
-    background: white;
-    border: 3px solid var(--deep-sky);
-    border-radius: 20px;
-    padding: 6px 20px;
-    font-family: 'Poor Story', cursive;
-    font-size: 1rem;
-    color: var(--deep-sky);
-    margin-bottom: 16px;
-    transform: rotate(-1.5deg);
-    box-shadow: 4px 4px 0 var(--deep-sky);
-  }
+/* ── 02 SKETCHES (습작) ── */
+#sketches { background: var(--paper); }
 
-  h1 {
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: clamp(3.5rem, 10vw, 7rem);
-    color: var(--pencil);
-    line-height: 1.1;
-    letter-spacing: -1px;
-    text-shadow: 3px 4px 0 rgba(135,206,235,0.4);
-  }
-  h1 span {
-    color: var(--deep-sky);
-    display: inline-block;
-    animation: wobble 4s ease-in-out infinite;
-  }
-  @keyframes wobble {
-    0%,100% { transform: rotate(-2deg); }
-    50% { transform: rotate(2deg); }
-  }
+.sketches-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.sketch-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  background: var(--light);
+  cursor: pointer;
+  border: 1px solid rgba(168,200,232,0.3);
+}
+.sketch-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s, filter 0.4s;
+  filter: saturate(0.75) sepia(0.08);
+}
+.sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
+.sketch-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26,26,46,0);
+  transition: background 0.3s;
+  display: flex; align-items: flex-end; padding: 16px;
+}
+.sketch-item:hover .sketch-overlay { background: rgba(26,26,46,0.35); }
+.sketch-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+  color: white;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.sketch-item:hover .sketch-num { opacity: 1; }
+.sketch-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.88rem;
+  background: linear-gradient(135deg, var(--light), var(--warm));
+}
 
-  .hero-sub {
-    font-family: 'Gaegu', cursive;
-    font-size: 1.3rem;
-    color: #666;
-    margin-top: 12px;
-    line-height: 1.7;
-  }
+/* ── 03 EXHIBITION ── */
+#exhibition {
+  background: var(--ink);
+  padding: 96px 80px;
+}
+#exhibition .section-title { color: var(--paper); }
+#exhibition .section-num { color: var(--sky); }
+#exhibition .section-sub { color: rgba(255,255,255,0.3); }
+#exhibition .section-line { background: linear-gradient(90deg, var(--deep), transparent); }
 
-  /* 스크롤 안내 */
-  .scroll-hint {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-family: 'Poor Story', cursive;
-    font-size: 0.9rem;
-    color: var(--deep-sky);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    animation: bounce 2s ease-in-out infinite;
-  }
-  @keyframes bounce {
-    0%,100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(8px); }
-  }
-  .scroll-arrow { font-size: 1.4rem; }
+.ex-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 3px;
+}
+.ex-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.ex-item:nth-child(1) { grid-row: span 2; aspect-ratio: unset; min-height: 420px; }
+.ex-item:nth-child(2),
+.ex-item:nth-child(3),
+.ex-item:nth-child(4),
+.ex-item:nth-child(5) { aspect-ratio: 4/3; }
 
-  /* ── 섹션 공통 ── */
-  section {
-    position: relative;
-    z-index: 1;
-    padding: 80px 24px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
+.ex-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: opacity 0.4s, transform 0.55s;
+  filter: brightness(0.92);
+  display: block;
+}
+.ex-item:hover img { opacity: 1; transform: scale(1.04); filter: brightness(1); }
+.ex-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 20px 22px 18px;
+  background: linear-gradient(0deg, rgba(26,26,46,0.88) 0%, transparent 100%);
+}
+.ex-caption-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 300;
+  font-style: italic;
+  color: white;
+  letter-spacing: 1px;
+}
+.ex-caption-sub {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  color: var(--sky);
+  text-transform: uppercase;
+  margin-top: 4px;
+  opacity: 0.8;
+}
+.ex-placeholder {
+  width: 100%; height: 100%;
+  min-height: 220px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.04);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.88rem;
+}
 
-  .section-title {
-    font-family: 'Nanum Pen Script', cursive;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    color: var(--pencil);
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 3px;
-    background: repeating-linear-gradient(
-      90deg,
-      var(--sky) 0, var(--sky) 8px,
-      transparent 8px, transparent 14px
-    );
-    border-radius: 2px;
-  }
+/* ── 04 PROCESS ── */
+#process { background: var(--white); }
 
-  /* ── 소개 카드 ── */
-  .intro-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-    align-items: start;
-  }
-  @media(max-width:640px) { .intro-wrap { grid-template-columns: 1fr; } }
+.process-layout {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.process-item {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2/3;
+  background: var(--light);
+  cursor: pointer;
+}
+.process-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s, filter 0.4s;
+  filter: saturate(0.82);
+  display: block;
+}
+.process-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
+.process-badge {
+  position: absolute;
+  top: 14px; left: 14px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  color: white;
+  background: rgba(58,107,138,0.85);
+  padding: 4px 12px;
+  backdrop-filter: blur(4px);
+}
+.process-placeholder {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--accent);
+  font-size: 0.88rem;
+  background: linear-gradient(160deg, var(--light), var(--warm));
+}
 
-  .intro-card {
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 18px;
-    padding: 28px;
-    box-shadow: 6px 6px 0 var(--sky);
-    transform: rotate(-0.8deg);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .intro-card:hover {
-    transform: rotate(0deg) translateY(-4px);
-    box-shadow: 8px 10px 0 var(--deep-sky);
-  }
-  .intro-card:nth-child(2) { transform: rotate(0.6deg); }
-  .intro-card:nth-child(2):hover { transform: rotate(0deg) translateY(-4px); }
+/* ── ABOUT strip ── */
+#about {
+  background: var(--paper);
+  padding: 80px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: center;
+  border-top: 1px solid rgba(168,200,232,0.3);
+}
+.about-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--deep);
+  line-height: 1.2;
+}
+.about-body {
+  font-size: 0.92rem;
+  line-height: 2.2;
+  color: #666;
+  font-weight: 300;
+}
+.about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.tag {
+  font-size: 0.68rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--deep);
+  border: 1px solid var(--sky);
+  padding: 5px 16px;
+  border-radius: 999px;
+}
 
-  .intro-card h3 {
-    font-family: 'Poor Story', cursive;
-    font-size: 1.3rem;
-    color: var(--deep-sky);
-    margin-bottom: 14px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .intro-card p, .intro-card li {
-    font-size: 1.15rem;
-    color: #444;
-    line-height: 1.9;
-  }
-  .intro-card ul { list-style: none; }
-  .intro-card ul li::before {
-    content: '✏️ ';
-  }
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 40px 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  letter-spacing: 5px;
+}
+.footer-logo span { color: var(--sky); }
+.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
 
-  /* ── 그림 갤러리 ── */
-  .gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 24px;
-  }
+/* ── LIGHTBOX ── */
+.lightbox {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(15,15,28,0.96);
+  z-index: 999;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 88vw;
+  max-height: 88vh;
+  object-fit: contain;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+}
+.lb-close {
+  position: absolute; top: 24px; right: 32px;
+  font-size: 1.5rem; color: white; cursor: pointer;
+  background: none; border: none; opacity: 0.5;
+  transition: opacity 0.2s; letter-spacing: 1px;
+  font-family: 'Cormorant Garamond', serif;
+}
+.lb-close:hover { opacity: 1; }
 
-  .gallery-item {
-    position: relative;
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 5px 5px 0 var(--sky);
-    transform: rotate(var(--rot));
-    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s;
-    cursor: pointer;
-  }
-  .gallery-item:hover {
-    transform: rotate(0deg) scale(1.05);
-    box-shadow: 8px 8px 0 var(--deep-sky);
-    z-index: 10;
-  }
-  .gallery-item:nth-child(1)  { --rot: -2deg; }
-  .gallery-item:nth-child(2)  { --rot:  1.5deg; }
-  .gallery-item:nth-child(3)  { --rot: -1deg; }
-  .gallery-item:nth-child(4)  { --rot:  2deg; }
-  .gallery-item:nth-child(5)  { --rot: -1.5deg; }
-  .gallery-item:nth-child(6)  { --rot:  1deg; }
+/* ── FADE IN ── */
+.fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  .gallery-img {
-    width: 100%;
-    aspect-ratio: 1;
-    background: var(--cloud);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  /* 실제 사진이 없을 때 placeholder */
-  .gallery-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-  }
-  .gallery-img .placeholder-txt {
-    position: absolute;
-    font-family: 'Poor Story', cursive;
-    font-size: 0.85rem;
-    color: #aaa;
-    bottom: 8px;
-    left: 50%;
-    transform: translateX(-50%);
-    white-space: nowrap;
-  }
-
-  .gallery-label {
-    padding: 10px 14px;
-    font-family: 'Poor Story', cursive;
-    font-size: 1rem;
-    color: var(--pencil);
-    border-top: 2px dashed var(--sky);
-  }
-
-  /* 테이프 스티커 */
-  .tape {
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-3deg);
-    width: 60px;
-    height: 22px;
-    background: rgba(135,206,235,0.45);
-    border-radius: 3px;
-    z-index: 5;
-  }
-  .gallery-item:nth-child(even) .tape { transform: translateX(-50%) rotate(3deg); }
-
-  /* ── 과정 타임라인 ── */
-  .process-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-  }
-  .process-list::before {
-    content: '';
-    position: absolute;
-    left: 28px;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    background: repeating-linear-gradient(
-      180deg,
-      var(--sky) 0, var(--sky) 8px,
-      transparent 8px, transparent 14px
-    );
-  }
-
-  .process-item {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-    padding: 16px 0;
-    animation: slideIn 0.5s ease both;
-  }
-  @keyframes slideIn {
-    from { transform: translateX(-20px); opacity:0; }
-    to   { transform: translateX(0); opacity:1; }
-  }
-
-  .process-dot {
-    flex-shrink: 0;
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-    background: white;
-    border: 3px solid var(--deep-sky);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.6rem;
-    box-shadow: 3px 3px 0 var(--sky);
-    position: relative;
-    z-index: 1;
-  }
-
-  .process-content {
-    flex: 1;
-    background: white;
-    border: 2px solid var(--sky);
-    border-radius: 14px;
-    padding: 16px 20px;
-    margin-top: 6px;
-    box-shadow: 4px 4px 0 rgba(135,206,235,0.3);
-  }
-  .process-content h4 {
-    font-family: 'Poor Story', cursive;
-    font-size: 1.15rem;
-    color: var(--deep-sky);
-    margin-bottom: 6px;
-  }
-  .process-content p {
-    font-size: 1.05rem;
-    color: #555;
-    line-height: 1.7;
-  }
-
-  /* ── 전시회 ── */
-  .exhibition-wrap {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
-  }
-  @media(max-width:640px) { .exhibition-wrap { grid-template-columns: 1fr; } }
-
-  .ex-photo {
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: 6px 6px 0 var(--doodle4);
-    transform: rotate(-1deg);
-    transition: transform 0.3s;
-  }
-  .ex-photo:hover { transform: rotate(0deg) scale(1.02); }
-  .ex-photo-inner {
-    aspect-ratio: 4/3;
-    background: linear-gradient(135deg, #E8F4FD, #D4EDFA);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3.5rem;
-    position: relative;
-  }
-  .ex-photo-inner .placeholder-txt {
-    position: absolute;
-    bottom: 10px;
-    font-family: 'Poor Story', cursive;
-    font-size: 0.85rem;
-    color: #aaa;
-  }
-  .ex-caption {
-    padding: 12px 16px;
-    border-top: 2px dashed var(--doodle4);
-    font-family: 'Poor Story', cursive;
-    font-size: 1rem;
-    color: var(--pencil);
-  }
-
-  /* 영상 placeholder */
-  .video-placeholder {
-    grid-column: 1 / -1;
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 18px;
-    padding: 32px;
-    text-align: center;
-    box-shadow: 6px 6px 0 var(--doodle4);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-  .video-placeholder .play-btn {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: var(--deep-sky);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: white;
-    cursor: pointer;
-    transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 4px 4px 0 var(--pencil);
-  }
-  .video-placeholder .play-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 6px 6px 0 var(--pencil);
-  }
-  .video-placeholder p {
-    font-family: 'Poor Story', cursive;
-    font-size: 1.1rem;
-    color: #777;
-  }
-
-  /* ── 취미 뱃지들 ── */
-  .hobby-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-  .hobby-badge {
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 999px;
-    padding: 10px 22px;
-    font-family: 'Poor Story', cursive;
-    font-size: 1.1rem;
-    color: var(--pencil);
-    box-shadow: 4px 4px 0 var(--sky);
-    transform: rotate(var(--br));
-    transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: default;
-  }
-  .hobby-badge:hover {
-    transform: rotate(0deg) translateY(-3px);
-    background: var(--cloud);
-    box-shadow: 6px 6px 0 var(--deep-sky);
-  }
-  .hobby-badge:nth-child(odd)  { --br: -1.5deg; }
-  .hobby-badge:nth-child(even) { --br:  1.5deg; }
-
-  /* ── 방명록 ── */
-  .guestbook-form {
-    background: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 6px 6px 0 var(--doodle3);
-  }
-  .guestbook-form input,
-  .guestbook-form textarea {
-    width: 100%;
-    border: 2px solid var(--sky);
-    border-radius: 12px;
-    padding: 12px 16px;
-    font-family: 'Gaegu', cursive;
-    font-size: 1.1rem;
-    color: var(--pencil);
-    background: var(--chalk);
-    outline: none;
-    margin-bottom: 16px;
-    resize: vertical;
-    transition: border-color 0.2s;
-  }
-  .guestbook-form input:focus,
-  .guestbook-form textarea:focus { border-color: var(--deep-sky); }
-  .guestbook-form textarea { min-height: 100px; }
-  .guestbook-form button {
-    background: var(--deep-sky);
-    color: white;
-    border: 2.5px solid var(--pencil);
-    border-radius: 999px;
-    padding: 12px 32px;
-    font-family: 'Poor Story', cursive;
-    font-size: 1.15rem;
-    cursor: pointer;
-    box-shadow: 4px 4px 0 var(--pencil);
-    transition: transform 0.2s, box-shadow 0.2s;
-  }
-  .guestbook-form button:hover {
-    transform: translateY(-2px);
-    box-shadow: 6px 6px 0 var(--pencil);
-  }
-
-  /* 방명록 리스트 */
-  .guestbook-entries { margin-top: 28px; display: flex; flex-direction: column; gap: 16px; }
-  .gentry {
-    background: var(--cloud);
-    border: 2px solid var(--sky);
-    border-radius: 14px;
-    padding: 16px 20px;
-  }
-  .gentry .gname {
-    font-family: 'Poor Story', cursive;
-    font-size: 1rem;
-    color: var(--deep-sky);
-    margin-bottom: 6px;
-  }
-  .gentry .gmsg { font-size: 1.05rem; color: #555; line-height: 1.7; }
-
-  /* ── 푸터 ── */
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 48px 24px;
-    background: linear-gradient(0deg, #D4EDFA, transparent);
-    font-family: 'Poor Story', cursive;
-    font-size: 1rem;
-    color: #888;
-  }
-  footer .footer-doodle {
-    font-size: 2rem;
-    margin-bottom: 10px;
-    display: block;
-    animation: spin 8s linear infinite;
-  }
-  @keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-  }
-
-  /* 장식 낙서들 (우측 상단 등) */
-  .doodle-corner {
-    position: fixed;
-    font-size: 1.8rem;
-    opacity: 0.25;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .dc1 { top: 10px;  right: 20px; animation: twinkle 4s 0s infinite; }
-  .dc2 { top: 80px;  right: 60px; animation: twinkle 4s 1s infinite; }
-  .dc3 { bottom: 60px; left: 20px; animation: twinkle 4s 2s infinite; }
-  .dc4 { bottom: 120px; left: 70px; animation: twinkle 4s 0.5s infinite; }
-
-  /* 구분선 */
-  .wavy-divider {
-    text-align: center;
-    font-size: 1.6rem;
-    letter-spacing: 6px;
-    opacity: 0.3;
-    margin: 0 auto 60px;
-    user-select: none;
-  }
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 16px 24px; }
+  .nav-links { gap: 24px; }
+  .nav-links a { font-size: 0.65rem; }
+  #hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 100px 24px 48px; }
+  .hero-left::after { display: none; }
+  .hero-right { min-height: 280px; }
+  .section-wrap, #exhibition, #about, footer { padding: 60px 24px; }
+  .works-grid { grid-template-columns: 1fr 1fr; }
+  .work-item:nth-child(1) { grid-column: span 2; }
+  .work-item:nth-child(2),
+  .work-item:nth-child(3),
+  .work-item:nth-child(4),
+  .work-item:nth-child(5) { grid-column: span 1; }
+  .sketches-grid { grid-template-columns: 1fr 1fr; }
+  .ex-layout { grid-template-columns: 1fr; }
+  .ex-item:nth-child(n) { aspect-ratio: 4/3; }
+  .process-layout { grid-template-columns: repeat(3, 1fr); }
+  #about { grid-template-columns: 1fr; gap: 32px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; }
+}
 </style>
 </head>
 <body>
 
-<!-- 장식 낙서 -->
-<div class="doodle-corner dc1">⭐</div>
-<div class="doodle-corner dc2">🌀</div>
-<div class="doodle-corner dc3">🌈</div>
-<div class="doodle-corner dc4">✨</div>
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">DDU<span>NY</span></a>
+  <ul class="nav-links">
+    <li><a href="#works">Works</a></li>
+    <li><a href="#sketches">Sketches</a></li>
+    <li><a href="#exhibition">Exhibition</a></li>
+    <li><a href="#process">Process</a></li>
+  </ul>
+</nav>
 
-<!-- ══════════ 헤더 / 히어로 ══════════ -->
-<header>
-  <div class="cloud cloud-1"></div>
-  <div class="cloud cloud-2"></div>
-  <div class="cloud cloud-3"></div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left fade-in">
+    <p class="hero-tag">Visual Artist · 2024 —</p>
+    <h1 class="hero-name">DDU<em>NY</em></h1>
 
-  <div class="star" style="top:15%;left:10%;animation-delay:0s;">⭐</div>
-  <div class="star" style="top:25%;right:12%;animation-delay:1s;">🌟</div>
-  <div class="star" style="top:60%;left:6%;animation-delay:2s;">✨</div>
-  <div class="star" style="top:70%;right:8%;animation-delay:0.5s;">⭐</div>
-
-  <div class="hero-inner">
-    <div class="title-badge">✏️ 여기는 나의 낙서장이에요</div>
-    <h1>나의 <span>그림</span> 세상 🎨</h1>
-    <p class="hero-sub">
-      그리고, 칠하고, 붙이고, 빛내는<br>
-      나만의 이야기들이 모여있어요 🌈
+    <p class="hero-desc">
+      자연과 생명을 화폭에 담습니다.<br>
+      꽃, 새, 그리고 작은 생물들—<br>
+      세상의 아름다운 것들을 그려나가고 있어요.
     </p>
-  </div>
-
-  <div class="scroll-hint">
-    <span>아래로 내려보세요</span>
-    <span class="scroll-arrow">▼</span>
-  </div>
-</header>
-
-<!-- ══════════ 소개 ══════════ -->
-<section id="about">
-  <h2 class="section-title">💬 안녕하세요!</h2>
-  <div class="intro-wrap">
-    <div class="intro-card">
-      <h3>🙋 저는요...</h3>
-      <p>
-        그림 그리는 걸 사랑하는 아이예요.<br>
-        그림을 배운 지는 1년이 조금 넘었는데<br>
-        그리면 그릴수록 점점 더 좋아지고 있어요! 🖌️<br><br>
-        보석십자수도 하고, 스티커북도 붙이고,<br>
-        낙서하는 것도 너무 좋아해요 ✏️
-      </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">5</div>
+        <div class="stat-label">Works</div>
+      </div>
+      <div>
+        <div class="stat-num">1</div>
+        <div class="stat-label">Exhibition</div>
+      </div>
+      <div>
+        <div class="stat-num">1<span style="font-size:1.2rem">yr</span></div>
+        <div class="stat-label">Journey</div>
+      </div>
     </div>
-    <div class="intro-card">
-      <h3>❤️ 좋아하는 것들</h3>
-      <ul>
-        <li>그림 그리기 & 낙서</li>
-        <li>보석십자수 만들기</li>
-        <li>스티커북 붙이기</li>
-        <li>수영하기 🏊</li>
-        <li>등산하기 ⛰️</li>
-        <li>정리하기 & 운동 💪</li>
-      </ul>
+  </div>
+  <div class="hero-right">
+    <!-- 대표 작품 사진: work01.jpg 또는 원하는 사진으로 교체 -->
+    <img src="work01.jpg" alt="대표작" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="hero-placeholder" style="display:none">
+      <span>대표 작품 사진</span>
+      <small>work01.jpg</small>
     </div>
   </div>
 </section>
 
-<div class="wavy-divider">~ ~ ~ ~ ~ ~ ~</div>
-
-<!-- ══════════ 그림 갤러리 ══════════ -->
-<section id="gallery">
-  <h2 class="section-title">🖼️ 내가 그린 그림들</h2>
-  <div class="gallery-grid">
-
-    <div class="gallery-item">
-      <div class="tape"></div>
-      <div class="gallery-img">
-        <img src="work01.jpg" alt="해바라기">
-      </div>
-      <div class="gallery-label">🌻 해바라기</div>
+<!-- 01 WORKS -->
+<section id="works">
+  <div class="section-wrap">
+    <div class="section-header fade-in">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Works</h2>
+      <div class="section-line"></div>
+      <span class="section-sub">작품</span>
     </div>
+    <div class="works-grid fade-in">
 
-    <div class="gallery-item">
-      <div class="tape"></div>
-      <div class="gallery-img">
-        <img src="work02.jpg" alt="숲과 새">
+      <div class="work-item" onclick="lb('work01.jpg')">
+        <img src="work01.jpg" alt="해바라기" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">해바라기</div>
+        <div class="work-overlay"><div class="work-label">해바라기</div></div>
       </div>
-      <div class="gallery-label">🌲 숲과 새</div>
-    </div>
 
-    <div class="gallery-item">
-      <div class="tape"></div>
-      <div class="gallery-img">
-        <img src="work03.jpg" alt="야생화정원">
+      <div class="work-item" onclick="lb('work02.jpg')">
+        <img src="work02.jpg" alt="숲과 새" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">숲과 새</div>
+        <div class="work-overlay"><div class="work-label">숲과 새</div></div>
       </div>
-      <div class="gallery-label">🌸 야생화 정원</div>
-    </div>
 
-    <div class="gallery-item">
-      <div class="tape"></div>
-      <div class="gallery-img">
-        <img src="work04.jpg" alt="애벌레친구들">
+      <div class="work-item" onclick="lb('work03.jpg')">
+        <img src="work03.jpg" alt="야생화 정원" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">야생화 정원</div>
+        <div class="work-overlay"><div class="work-label">야생화 정원</div></div>
       </div>
-      <div class="gallery-label">🐛 애벌레 친구들</div>
-    </div>
 
-    <div class="gallery-item">
-      <div class="tape"></div>
-      <div class="gallery-img">
-        <img src="work05.jpg" alt="닭">
+      <div class="work-item" onclick="lb('work04.jpg')">
+        <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">애벌레 친구들</div>
+        <div class="work-overlay"><div class="work-label">애벌레 친구들</div></div>
       </div>
-      <div class="gallery-label">🐔 닭</div>
-    </div>
 
+      <div class="work-item" onclick="lb('work05.jpg')">
+        <img src="work05.jpg" alt="닭" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">닭</div>
+        <div class="work-overlay"><div class="work-label">닭</div></div>
+      </div>
+
+    </div>
   </div>
 </section>
 
-<div class="wavy-divider">~ ~ ~ ~ ~ ~ ~</div>
-
-<!-- ══════════ 그리는 과정 ══════════ -->
-<section id="process">
-  <h2 class="section-title">🔍 그림 그리는 과정</h2>
-  <div class="process-list">
-
-    <div class="process-item">
-      <div class="process-dot">1️⃣</div>
-      <div class="process-content">
-        <h4>스케치 시작!</h4>
-        <img src="process01_01.jpg" alt="과정1" style="width:100%;border-radius:10px;margin-top:10px;">
-      </div>
+<!-- 02 SKETCHES -->
+<section id="sketches">
+  <div class="section-wrap">
+    <div class="section-header fade-in">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Sketches</h2>
+      <div class="section-line"></div>
+      <span class="section-sub">습작</span>
     </div>
+    <div class="sketches-grid fade-in">
 
-    <div class="process-item">
-      <div class="process-dot">2️⃣</div>
-      <div class="process-content">
-        <h4>색칠하기</h4>
-        <img src="process02_01.jpg" alt="과정2" style="width:100%;border-radius:10px;margin-top:10px;">
+      <div class="sketch-item" onclick="lb('etc03.jpg')">
+        <img src="etc03.jpg" alt="습작 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 01</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 01</span></div>
       </div>
-    </div>
 
-    <div class="process-item">
-      <div class="process-dot">3️⃣</div>
-      <div class="process-content">
-        <h4>한 걸음 더!</h4>
-        <img src="process03_01.jpg" alt="과정3" style="width:100%;border-radius:10px;margin-top:10px;">
+      <div class="sketch-item" onclick="lb('etc04.jpg')">
+        <img src="etc04.jpg" alt="습작 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 02</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 02</span></div>
       </div>
-    </div>
 
-    <div class="process-item">
-      <div class="process-dot">4️⃣</div>
-      <div class="process-content">
-        <h4>세부 표현</h4>
-        <img src="process04_01.jpg" alt="과정4" style="width:100%;border-radius:10px;margin-top:10px;">
+      <div class="sketch-item" onclick="lb('etc05_03.jpg')">
+        <img src="etc05_03.jpg" alt="습작 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 03</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 03</span></div>
       </div>
-    </div>
 
-    <div class="process-item">
-      <div class="process-dot">5️⃣</div>
-      <div class="process-content">
-        <h4>완성! 🎉</h4>
-        <img src="process05_01.jpg" alt="과정5" style="width:100%;border-radius:10px;margin-top:10px;">
+      <div class="sketch-item" onclick="lb('etc06_01.jpg')">
+        <img src="etc06_01.jpg" alt="습작 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 04</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 04</span></div>
       </div>
-    </div>
 
+    </div>
   </div>
 </section>
 
-<div class="wavy-divider">~ ~ ~ ~ ~ ~ ~</div>
-
-<!-- ══════════ 전시회 ══════════ -->
+<!-- 03 EXHIBITION -->
 <section id="exhibition">
-  <h2 class="section-title">🏛️ 전시회</h2>
-  <div class="exhibition-wrap">
+  <div class="section-header fade-in">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Exhibition</h2>
+    <div class="section-line"></div>
+    <span class="section-sub" style="color:rgba(255,255,255,0.3)">전시회</span>
+  </div>
+  <div class="ex-layout fade-in">
 
-    <!-- 영상 자리 -->
-    <div class="video-placeholder">
-      <div class="play-btn">▶</div>
-      <p>전시회 영상을 여기에 넣어주세요</p>
-      <p style="font-size:0.85rem;color:#aaa;">(유튜브 링크나 영상 파일)</p>
+    <div class="ex-item" onclick="lb('exhibition01_01.jpg')">
+      <img src="exhibition01_01.jpg" alt="전시회" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">첫 번째 전시회</div>
+        <div class="ex-caption-sub">2024</div>
+      </div>
     </div>
 
-    <div class="ex-photo">
-      <div class="ex-photo-inner">
-        <img src="exhibition01_03.jpg" alt="전시회" style="width:100%;height:100%;object-fit:cover;">
+    <div class="ex-item" onclick="lb('exhibition01_03.jpg')">
+      <img src="exhibition01_03.jpg" alt="전시장에서" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">전시장에서</div>
+        <div class="ex-caption-sub">Exhibition View</div>
       </div>
-      <div class="ex-caption">전시회 📸</div>
     </div>
 
-    <div class="ex-photo" style="transform:rotate(1deg);">
-      <div class="ex-photo-inner">
-        <img src="exhibition01_04.jpg" alt="전시장에서" style="width:100%;height:100%;object-fit:cover;">
+    <div class="ex-item" onclick="lb('exhibition01_04.jpg')">
+      <img src="exhibition01_04.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">전시 현장</div>
+        <div class="ex-caption-sub">Exhibition View</div>
       </div>
-      <div class="ex-caption">전시장에서 🌟</div>
     </div>
 
-    <div class="ex-photo" style="transform:rotate(-0.5deg);">
-      <div class="ex-photo-inner">
-        <img src="exhibition01_05.jpg" alt="뿌듯한 하루" style="width:100%;height:100%;object-fit:cover;">
+    <div class="ex-item" onclick="lb('exhibition01_05.jpg')">
+      <img src="exhibition01_05.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">전시 현장</div>
+        <div class="ex-caption-sub">Exhibition View</div>
       </div>
-      <div class="ex-caption">뿌듯한 하루 ✨</div>
+    </div>
+
+    <div class="ex-item" onclick="lb('exhibition01_07.jpg')">
+      <img src="exhibition01_07.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">전시 현장</div>
+        <div class="ex-caption-sub">Exhibition View</div>
+      </div>
     </div>
 
   </div>
 </section>
 
-<div class="wavy-divider">~ ~ ~ ~ ~ ~ ~</div>
+<!-- 04 PROCESS -->
+<section id="process">
+  <div class="section-wrap">
+    <div class="section-header fade-in">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Process</h2>
+      <div class="section-line"></div>
+      <span class="section-sub">작품 과정</span>
+    </div>
+    <div class="process-layout fade-in">
 
-<!-- ══════════ 취미 ══════════ -->
-<section id="hobbies">
-  <h2 class="section-title">🌟 내가 좋아하는 것들</h2>
-  <div class="hobby-wrap">
-    <div class="hobby-badge">🎨 그림 그리기</div>
-    <div class="hobby-badge">✏️ 낙서하기</div>
-    <div class="hobby-badge">💎 보석십자수</div>
-    <div class="hobby-badge">🌟 스티커북</div>
-    <div class="hobby-badge">🏊 수영</div>
-    <div class="hobby-badge">⛰️ 등산</div>
-    <div class="hobby-badge">💪 운동</div>
-    <div class="hobby-badge">🗂️ 정리정돈</div>
-  </div>
-</section>
-
-<div class="wavy-divider">~ ~ ~ ~ ~ ~ ~</div>
-
-<!-- ══════════ 방명록 ══════════ -->
-<section id="guestbook">
-  <h2 class="section-title">📝 방명록</h2>
-  <div class="guestbook-form">
-    <input type="text" placeholder="이름이나 별명을 적어주세요 😊" id="gname">
-    <textarea placeholder="응원 메시지를 남겨주세요 💙" id="gmsg"></textarea>
-    <button onclick="addEntry()">✏️ 남기기</button>
-
-    <div class="guestbook-entries" id="entries">
-      <div class="gentry">
-        <div class="gname">💙 엄마</div>
-        <div class="gmsg">우리 아이가 그린 그림들, 정말 세상에서 제일 예뻐요 🌈 앞으로도 마음껏 그려줘요!</div>
+      <div class="process-item" onclick="lb('process01_01.jpg')">
+        <img src="process01_01.jpg" alt="과정 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 01</div>
+        <div class="process-badge">01</div>
       </div>
+
+      <div class="process-item" onclick="lb('process02_01.jpg')">
+        <img src="process02_01.jpg" alt="과정 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 02</div>
+        <div class="process-badge">02</div>
+      </div>
+
+      <div class="process-item" onclick="lb('process03_01.jpg')">
+        <img src="process03_01.jpg" alt="과정 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 03</div>
+        <div class="process-badge">03</div>
+      </div>
+
+      <div class="process-item" onclick="lb('process04_01.jpg')">
+        <img src="process04_01.jpg" alt="과정 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 04</div>
+        <div class="process-badge">04</div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- ══════════ 푸터 ══════════ -->
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-label fade-in">
+    자연을<br>그리는<br>아이, 뚜니
+  </div>
+  <div class="fade-in">
+    <p class="about-body">
+      안녕하세요, 저는 뚜니예요.<br>
+      그림을 그리기 시작한 지 1년이 조금 넘었어요.<br><br>
+      자연 속의 꽃, 새, 작은 생물들을 좋아하고,
+      그것들을 화폭에 담을 때 가장 행복해요.
+      낙서하기, 보석십자수, 스티커북 붙이기를 즐기고
+      수영과 등산도 좋아해요.<br><br>
+      세상의 아름다운 것들을 하나하나 그려나가고 있습니다.
+    </p>
+    <div class="about-tags">
+      <span class="tag">회화</span>
+      <span class="tag">자연</span>
+      <span class="tag">보석십자수</span>
+      <span class="tag">수영</span>
+      <span class="tag">등산</span>
+      <span class="tag">정리정돈</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  <span class="footer-doodle">✏️</span>
-  <p>그림을 그리는 게 제일 좋아요 💙</p>
-  <p style="margin-top:8px;font-size:0.85rem;">Made with 💙 by 엄마</p>
+  <div class="footer-logo">DDU<span>NY</span></div>
+  <div class="footer-copy">© 2024 DDUNY · All Rights Reserved</div>
 </footer>
 
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLb()">
+  <button class="lb-close" onclick="closeLb()">✕ close</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
 <script>
-  function addEntry() {
-    const name = document.getElementById('gname').value.trim();
-    const msg  = document.getElementById('gmsg').value.trim();
-    if (!name || !msg) { alert('이름이랑 메시지 모두 써주세요 😊'); return; }
-
-    const entries = document.getElementById('entries');
-    const div = document.createElement('div');
-    div.className = 'gentry';
-    div.innerHTML = `<div class="gname">💙 ${name}</div><div class="gmsg">${msg}</div>`;
-    entries.prepend(div);
-
-    document.getElementById('gname').value = '';
-    document.getElementById('gmsg').value  = '';
+  function lb(src) {
+    document.getElementById('lb-img').src = src;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
+  function closeLb() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-  // 갤러리 아이템 클릭 시 살짝 흔들기
-  document.querySelectorAll('.gallery-item').forEach(el => {
-    el.addEventListener('click', () => {
-      el.style.animation = 'popIn 0.4s cubic-bezier(0.34,1.56,0.64,1)';
-      setTimeout(() => el.style.animation = '', 400);
+  // 스크롤 페이드인
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // 네비 활성화
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) cur = s.id; });
+    navLinks.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
     });
   });
 </script>
