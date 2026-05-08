@@ -3,19 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEOIN — Art Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
+<title>SEOIN — Art & Healing</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+KR:wght@300;400;600&family=Noto+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
   --sky: #A8C8E8;
   --deep: #3A6B8A;
+  --deeper: #1E4A6A;
   --ink: #1A1A2E;
   --paper: #F8F6F2;
-  --warm: #E8E0D4;
+  --warm: #EDE5D8;
   --accent: #6B9AB8;
   --light: #EDF4F9;
+  --gold: #C9A96E;
   --white: #ffffff;
 }
 
@@ -38,7 +40,8 @@ nav {
   padding: 18px 56px;
   background: rgba(248,246,242,0.95);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(168,200,232,0.35);
+  border-bottom: 1px solid rgba(168,200,232,0.25);
+  transition: box-shadow 0.3s;
 }
 .nav-logo {
   font-family: 'Cormorant Garamond', serif;
@@ -48,15 +51,15 @@ nav {
   color: var(--ink);
   text-decoration: none;
 }
-.nav-logo span { color: var(--deep); }
-.nav-links { display: flex; gap: 40px; list-style: none; }
+.nav-logo span { color: var(--deep); font-style: italic; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   letter-spacing: 2.5px;
   color: var(--ink);
   text-decoration: none;
-  opacity: 0.5;
-  transition: opacity 0.2s;
+  opacity: 0.45;
+  transition: opacity 0.2s, color 0.2s;
   text-transform: uppercase;
 }
 .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--deep); }
@@ -67,426 +70,347 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-top: 56px;
+  position: relative;
 }
 .hero-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 80px 56px 80px 80px;
-  position: relative;
 }
-.hero-left::after {
-  content: '';
-  position: absolute;
-  right: 0; top: 20%; bottom: 20%;
-  width: 1px;
-  background: linear-gradient(180deg, transparent, var(--sky) 40%, var(--sky) 60%, transparent);
-}
-.hero-tag {
-  font-size: 0.68rem;
-  letter-spacing: 4px;
+.hero-eyebrow {
+  font-size: 0.65rem;
+  letter-spacing: 5px;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gold);
   margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
 }
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.2rem, 6.5vw, 6rem);
+  font-size: clamp(3.2rem, 6vw, 5.8rem);
   font-weight: 300;
-  line-height: 1;
-  letter-spacing: 14px;
+  line-height: 1.05;
+  letter-spacing: 12px;
   color: var(--ink);
-  margin-bottom: 28px;
-  white-space: nowrap;
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.4s ease forwards;
 }
-.hero-name em { font-style: italic; color: var(--deep); display: inline; }
-.hero-desc {
-  font-size: 0.92rem;
-  line-height: 2.1;
-  color: #666;
-  max-width: 340px;
+.hero-name em { font-style: italic; color: var(--deep); }
+.hero-tagline {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #777;
   font-weight: 300;
-  margin-bottom: 52px;
+  max-width: 340px;
+  margin-bottom: 48px;
   border-left: 2px solid var(--sky);
   padding-left: 20px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.6s ease forwards;
 }
-.hero-stats { display: flex; gap: 44px; }
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
 .stat-num {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   font-weight: 300;
   color: var(--deep);
   line-height: 1;
 }
 .stat-label {
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   letter-spacing: 2px;
-  color: #999;
+  color: #aaa;
   text-transform: uppercase;
   margin-top: 5px;
 }
 .hero-right {
   position: relative;
   overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.3s ease forwards;
 }
-.hero-right img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-}
+.hero-right img { width: 100%; height: 100%; object-fit: cover; }
 .hero-placeholder {
-  width: 100%; height: 100%;
-  min-height: 600px;
+  width: 100%; height: 100%; min-height: 600px;
   display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 10px;
+  align-items: center; justify-content: center; gap: 10px;
   background: linear-gradient(160deg, var(--light) 0%, var(--warm) 100%);
 }
-.hero-placeholder span {
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  font-size: 1.05rem;
-  color: var(--accent);
-}
-.hero-placeholder small { font-size: 0.72rem; color: #bbb; letter-spacing: 1px; }
+.hero-placeholder span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--accent); }
+.hero-placeholder small { font-size: 0.7rem; color: #bbb; }
 
-/* ── SECTION 공통 ── */
-.section-wrap {
-  padding: 96px 80px;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* ── STORY INTRO ── */
+#story {
+  background: linear-gradient(160deg, #E8F0F8 0%, #F0EAE0 100%);
+  padding: 100px 80px;
+  position: relative;
+  overflow: hidden;
+}
+#story::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 500px; height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(58,107,138,0.15) 0%, transparent 70%);
+  pointer-events: none;
+}
+.story-inner {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+.story-label {
+  font-size: 0.65rem;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 32px;
+}
+.story-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 300;
+  color: var(--ink);
+  line-height: 1.4;
+  margin-bottom: 40px;
+  font-style: italic;
+}
+.story-heading em { color: var(--deep); font-style: normal; }
+.story-body {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 1rem;
+  line-height: 2.3;
+  color: #666;
+  font-weight: 300;
+  text-align: left;
+}
+.story-body strong { color: var(--ink); font-weight: 400; }
+.story-divider {
+  width: 40px; height: 1px;
+  background: var(--sky);
+  margin: 48px auto;
+  opacity: 0.6;
+}
+
+/* ── 섹션 공통 ── */
+.section-wrap { padding: 96px 80px; }
 .section-header {
   display: flex;
   align-items: baseline;
-  gap: 18px;
+  gap: 16px;
   margin-bottom: 52px;
 }
-.section-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.8rem;
-  color: var(--accent);
-  letter-spacing: 3px;
-}
-.section-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.9rem, 3vw, 2.6rem);
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: var(--ink);
-}
-.section-sub {
-  font-size: 0.75rem;
-  color: #aaa;
-  letter-spacing: 1px;
-  margin-left: auto;
-  align-self: center;
-}
-.section-line {
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--sky) 0%, transparent 100%);
-}
+.section-num { font-family: 'Cormorant Garamond', serif; font-size: 0.78rem; color: var(--accent); letter-spacing: 3px; }
+.section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 300; letter-spacing: 2px; color: var(--ink); }
+.section-sub { font-size: 0.7rem; color: #bbb; letter-spacing: 1px; margin-left: auto; align-self: center; }
+.section-line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--sky) 0%, transparent 100%); }
 
-/* ── 01 WORKS ── */
+/* ── WORKS ── */
 #works { background: var(--white); }
-
 .works-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto;
   gap: 3px;
 }
-/* 레이아웃: 첫 작품 크게, 나머지 배분 */
-.work-item {
-  position: relative;
-  overflow: hidden;
-  background: var(--light);
-  cursor: pointer;
-}
+.work-item { position: relative; overflow: hidden; background: var(--light); cursor: pointer; }
 .work-item:nth-child(1) { grid-column: span 7; aspect-ratio: 7/5; }
 .work-item:nth-child(2) { grid-column: span 5; aspect-ratio: 5/5; }
 .work-item:nth-child(3) { grid-column: span 4; aspect-ratio: 4/4; }
 .work-item:nth-child(4) { grid-column: span 4; aspect-ratio: 4/4; }
 .work-item:nth-child(5) { grid-column: span 4; aspect-ratio: 4/4; }
-
-.work-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s;
-  filter: saturate(0.88) brightness(1.02);
-  display: block;
-}
-.work-item:hover img { transform: scale(1.05); filter: saturate(1.08) brightness(1); }
-.work-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, rgba(26,26,46,0.1) 45%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s;
-  display: flex;
-  align-items: flex-end;
-  padding: 24px 28px;
-}
+.work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: saturate(0.88); display: block; }
+.work-item:hover img { transform: scale(1.05); filter: saturate(1.1); }
+.work-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px 28px; }
 .work-item:hover .work-overlay { opacity: 1; }
-.work-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.35rem;
-  font-weight: 300;
-  font-style: italic;
-  color: white;
-  letter-spacing: 1px;
+.work-label { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; font-style: italic; color: white; }
+.work-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.9rem; background: linear-gradient(135deg, var(--light), var(--warm)); }
+
+/* ── PROCESS (서사의 핵심) ── */
+#process { background: var(--paper); }
+.process-intro {
+  max-width: 560px;
+  margin-bottom: 52px;
 }
-.work-placeholder {
-  width: 100%; height: 100%;
-  min-height: 200px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--accent);
+.process-intro p {
+  font-family: 'Noto Serif KR', serif;
   font-size: 0.95rem;
-  background: linear-gradient(135deg, var(--light), var(--warm));
-}
-
-/* ── 02 SKETCHES (습작) ── */
-#sketches { background: var(--paper); }
-
-.sketches-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-}
-.sketch-item {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  background: var(--light);
-  cursor: pointer;
-  border: 1px solid rgba(168,200,232,0.3);
-}
-.sketch-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s, filter 0.4s;
-  filter: saturate(0.75) sepia(0.08);
-}
-.sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
-.sketch-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(26,26,46,0);
-  transition: background 0.3s;
-  display: flex; align-items: flex-end; padding: 16px;
-}
-.sketch-item:hover .sketch-overlay { background: rgba(26,26,46,0.35); }
-.sketch-num {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.75rem;
-  letter-spacing: 3px;
-  color: white;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.sketch-item:hover .sketch-num { opacity: 1; }
-.sketch-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--accent);
-  font-size: 0.88rem;
-  background: linear-gradient(135deg, var(--light), var(--warm));
-}
-
-/* ── 03 EXHIBITION ── */
-#exhibition {
-  background: var(--ink);
-  padding: 96px 80px;
-}
-#exhibition .section-title { color: var(--paper); }
-#exhibition .section-num { color: var(--sky); }
-#exhibition .section-sub { color: rgba(255,255,255,0.3); }
-#exhibition .section-line { background: linear-gradient(90deg, var(--deep), transparent); }
-
-.ex-layout {
-  display: grid;
-  grid-template-columns: 1.6fr 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 3px;
-}
-.ex-item {
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
-}
-.ex-item:nth-child(1) { grid-row: span 2; aspect-ratio: unset; min-height: 420px; }
-.ex-item:nth-child(2),
-.ex-item:nth-child(3),
-.ex-item:nth-child(4),
-.ex-item:nth-child(5) { aspect-ratio: 4/3; }
-
-.ex-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  opacity: 0.8;
-  transition: opacity 0.4s, transform 0.55s;
-  filter: brightness(0.92);
-  display: block;
-}
-.ex-item:hover img { opacity: 1; transform: scale(1.04); filter: brightness(1); }
-.ex-caption {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  padding: 20px 22px 18px;
-  background: linear-gradient(0deg, rgba(26,26,46,0.88) 0%, transparent 100%);
-}
-.ex-caption-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.05rem;
-  font-weight: 300;
-  font-style: italic;
-  color: white;
-  letter-spacing: 1px;
-}
-.ex-caption-sub {
-  font-size: 0.68rem;
-  letter-spacing: 2px;
-  color: var(--sky);
-  text-transform: uppercase;
-  margin-top: 4px;
-  opacity: 0.8;
-}
-.ex-placeholder {
-  width: 100%; height: 100%;
-  min-height: 220px;
-  display: flex; align-items: center; justify-content: center;
-  background: rgba(255,255,255,0.04);
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--accent);
-  font-size: 0.88rem;
-}
-
-/* ── 04 PROCESS ── */
-#process { background: var(--white); }
-
-.process-layout {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3px;
-}
-.process-item {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 2/3;
-  background: var(--light);
-  cursor: pointer;
-}
-.process-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform 0.55s, filter 0.4s;
-  filter: saturate(0.82);
-  display: block;
-}
-.process-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
-.process-badge {
-  position: absolute;
-  top: 14px; left: 14px;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.72rem;
-  letter-spacing: 3px;
-  color: white;
-  background: rgba(58,107,138,0.85);
-  padding: 4px 12px;
-  backdrop-filter: blur(4px);
-}
-.process-placeholder {
-  width: 100%; height: 100%;
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-style: italic;
-  color: var(--accent);
-  font-size: 0.88rem;
-  background: linear-gradient(160deg, var(--light), var(--warm));
-}
-
-/* ── ABOUT strip ── */
-#about {
-  background: var(--paper);
-  padding: 80px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 80px;
-  align-items: center;
-  border-top: 1px solid rgba(168,200,232,0.3);
-}
-.about-label {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--deep);
-  line-height: 1.2;
-}
-.about-body {
-  font-size: 0.92rem;
   line-height: 2.2;
   color: #666;
   font-weight: 300;
 }
-.about-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-.tag {
-  font-size: 0.68rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--deep);
-  border: 1px solid var(--sky);
-  padding: 5px 16px;
-  border-radius: 999px;
+.process-layout {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 3px;
 }
+.process-item { position: relative; overflow: hidden; aspect-ratio: 2/3; background: var(--light); cursor: pointer; }
+.process-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s, filter 0.4s; filter: saturate(0.82); display: block; }
+.process-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
+.process-badge { position: absolute; top: 14px; left: 14px; font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 3px; color: white; background: rgba(58,107,138,0.85); padding: 4px 12px; backdrop-filter: blur(4px); }
+.process-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.9rem; background: linear-gradient(160deg, var(--light), var(--warm)); }
 
-/* ── FOOTER ── */
-footer {
+/* 동영상 자리 */
+.video-section {
+  margin-top: 40px;
   background: var(--ink);
-  color: var(--paper);
-  padding: 40px 80px;
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/7;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  cursor: pointer;
 }
-.footer-logo {
+.video-section iframe {
+  width: 100%; height: 100%;
+  border: none;
+  display: block;
+}
+.video-placeholder-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.play-circle {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.4);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  color: white;
+  transition: border-color 0.3s, transform 0.3s;
+}
+.video-section:hover .play-circle { border-color: var(--sky); transform: scale(1.1); }
+.video-caption { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem; color: rgba(255,255,255,0.4); letter-spacing: 2px; }
+
+/* ── SKETCHES ── */
+#sketches { background: var(--white); }
+.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.sketch-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
+.sketch-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.4s; filter: saturate(0.75) sepia(0.06); }
+.sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
+.sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 16px; }
+.sketch-item:hover .sketch-overlay { background: rgba(26,26,46,0.35); }
+.sketch-num { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 3px; color: white; opacity: 0; transition: opacity 0.3s; }
+.sketch-item:hover .sketch-num { opacity: 1; }
+.sketch-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.85rem; background: linear-gradient(135deg, var(--light), var(--warm)); }
+
+/* ── EXHIBITION ── */
+#exhibition { background: var(--ink); padding: 96px 80px; }
+#exhibition .section-title { color: var(--paper); }
+#exhibition .section-num { color: var(--sky); }
+#exhibition .section-sub { color: rgba(255,255,255,0.3); }
+#exhibition .section-line { background: linear-gradient(90deg, var(--deep), transparent); }
+.ex-layout { display: grid; grid-template-columns: 1.6fr 1fr 1fr; grid-template-rows: auto auto; gap: 3px; }
+.ex-item { position: relative; overflow: hidden; cursor: pointer; }
+.ex-item:nth-child(1) { grid-row: span 2; min-height: 420px; }
+.ex-item:nth-child(2), .ex-item:nth-child(3), .ex-item:nth-child(4), .ex-item:nth-child(5) { aspect-ratio: 4/3; }
+.ex-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.4s, transform 0.55s; display: block; }
+.ex-item:hover img { opacity: 1; transform: scale(1.04); }
+.ex-caption { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px 22px 18px; background: linear-gradient(0deg, rgba(26,26,46,0.88) 0%, transparent 100%); }
+.ex-caption-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; font-weight: 300; font-style: italic; color: white; letter-spacing: 1px; }
+.ex-caption-sub { font-size: 0.65rem; letter-spacing: 2px; color: var(--sky); text-transform: uppercase; margin-top: 4px; opacity: 0.8; }
+.ex-placeholder { width: 100%; height: 100%; min-height: 220px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.04); font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.88rem; }
+
+/* ── ABOUT (맨 마지막 — 서사 마무리) ── */
+#about {
+  background: var(--paper);
+  padding: 100px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: center;
+}
+.about-left-label {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 1.2rem;
+  font-size: clamp(2rem, 3.5vw, 3rem);
   font-weight: 300;
-  letter-spacing: 5px;
+  font-style: italic;
+  color: var(--deep);
+  line-height: 1.4;
 }
-.footer-logo span { color: var(--sky); }
-.footer-copy { font-size: 0.7rem; color: rgba(255,255,255,0.3); letter-spacing: 1px; }
+.about-right {}
+.about-body {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 0.95rem;
+  line-height: 2.3;
+  color: #666;
+  font-weight: 300;
+  margin-bottom: 28px;
+}
+.about-quote {
+  padding: 22px 26px;
+  border-left: 2px solid var(--sky);
+  background: var(--light);
+  margin-bottom: 32px;
+}
+.about-quote p {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 0.92rem;
+  line-height: 2.2;
+  color: var(--deep);
+  font-style: italic;
+}
+.about-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.tag { font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; color: var(--deep); border: 1px solid var(--sky); padding: 5px 16px; border-radius: 999px; }
+
+/* ── FOOTER ── */
+footer { background: var(--ink); color: var(--paper); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; }
+.footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 5px; }
+.footer-logo span { color: var(--sky); font-style: italic; }
+.footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; }
 
 /* ── LIGHTBOX ── */
-.lightbox {
-  display: none;
-  position: fixed; inset: 0;
-  background: rgba(15,15,28,0.96);
-  z-index: 999;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  cursor: zoom-out;
-}
+.lightbox { display: none; position: fixed; inset: 0; background: rgba(15,15,28,0.96); z-index: 999; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
 .lightbox.open { display: flex; }
-.lightbox img {
-  max-width: 88vw;
-  max-height: 88vh;
-  object-fit: contain;
-  box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-}
-.lb-close {
-  position: absolute; top: 24px; right: 32px;
-  font-size: 1.5rem; color: white; cursor: pointer;
-  background: none; border: none; opacity: 0.5;
-  transition: opacity 0.2s; letter-spacing: 1px;
-  font-family: 'Cormorant Garamond', serif;
-}
+.lightbox img { max-width: 88vw; max-height: 88vh; object-fit: contain; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
+.lb-close { position: absolute; top: 24px; right: 32px; font-size: 1.3rem; color: white; cursor: pointer; background: none; border: none; opacity: 0.45; transition: opacity 0.2s; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; }
 .lb-close:hover { opacity: 1; }
+
+/* ── 동영상 ── */
+.video-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 20px;
+}
+.video-item video {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+  background: var(--ink);
+  max-height: 340px;
+  object-fit: cover;
+}
+.video-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #aaa;
+  letter-spacing: 1px;
+  margin-top: 10px;
+  text-align: center;
+}
 
 /* ── FADE IN ── */
 .fade-in { opacity: 0; transform: translateY(28px); transition: opacity 0.75s ease, transform 0.75s ease; }
@@ -495,25 +419,21 @@ footer {
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
-  .nav-links { gap: 24px; }
-  .nav-links a { font-size: 0.65rem; }
+  .nav-links { gap: 20px; }
+  .nav-links a { font-size: 0.6rem; }
   #hero { grid-template-columns: 1fr; }
   .hero-left { padding: 100px 24px 48px; }
-  .hero-left::after { display: none; }
-  .hero-right { min-height: 280px; }
-  .section-wrap, #exhibition, #about, footer { padding: 60px 24px; }
+  .hero-right { min-height: 260px; }
+  .section-wrap, #exhibition, #about, footer, #story { padding: 60px 24px; }
   .works-grid { grid-template-columns: 1fr 1fr; }
   .work-item:nth-child(1) { grid-column: span 2; }
-  .work-item:nth-child(2),
-  .work-item:nth-child(3),
-  .work-item:nth-child(4),
-  .work-item:nth-child(5) { grid-column: span 1; }
+  .work-item:nth-child(2), .work-item:nth-child(3), .work-item:nth-child(4), .work-item:nth-child(5) { grid-column: span 1; }
   .sketches-grid { grid-template-columns: 1fr 1fr; }
   .ex-layout { grid-template-columns: 1fr; }
-  .ex-item:nth-child(n) { aspect-ratio: 4/3; }
-  .process-layout { grid-template-columns: repeat(3, 1fr); }
-  #about { grid-template-columns: 1fr; gap: 32px; }
-  footer { flex-direction: column; gap: 12px; text-align: center; }
+  .ex-item:nth-child(n) { aspect-ratio: 4/3; min-height: unset; }
+  .process-layout { grid-template-columns: repeat(2, 1fr); }
+  #about { grid-template-columns: 1fr; gap: 40px; }
+  footer { flex-direction: column; gap: 12px; text-align: center; padding: 40px 24px; }
 }
 </style>
 </head>
@@ -523,23 +443,22 @@ footer {
 <nav>
   <a class="nav-logo" href="#hero">SEO<span>IN</span></a>
   <ul class="nav-links">
+    <li><a href="#story">Story</a></li>
     <li><a href="#works">Works</a></li>
-    <li><a href="#sketches">Sketches</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#sketches">Sketches</a></li>
     <li><a href="#exhibition">Exhibition</a></li>
   </ul>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-left fade-in">
-    <p class="hero-tag">Visual Artist · 2025 —</p>
+  <div class="hero-left">
+    <p class="hero-eyebrow">Visual Artist · 2025 —</p>
     <h1 class="hero-name">SEO<em>IN</em></h1>
-
-    <p class="hero-desc">
-      자연과 생명을 화폭에 담습니다.<br>
-      꽃, 새, 그리고 작은 생물들—<br>
-      세상의 아름다운 것들을 그려나가고 있어요.
+    <p class="hero-tagline">
+      그림 앞에서<br>
+      가장 행복한 아이.
     </p>
     <div class="hero-stats">
       <div>
@@ -551,18 +470,44 @@ footer {
         <div class="stat-label">Exhibition</div>
       </div>
       <div>
-        <div class="stat-num">1<span style="font-size:1.2rem">yr</span></div>
-        <div class="stat-label">Journey</div>
+        <div class="stat-num">2026</div>
+        <div class="stat-label">First Show</div>
       </div>
     </div>
   </div>
   <div class="hero-right">
-    <!-- 대표 작품 사진: work01.jpg 또는 원하는 사진으로 교체 -->
     <img src="work01.jpg" alt="대표작" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
     <div class="hero-placeholder" style="display:none">
-      <span>대표 작품 사진</span>
+      <span>대표 작품</span>
       <small>work01.jpg</small>
     </div>
+  </div>
+</section>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-inner fade-in">
+    <p class="story-label">The Story of Seoin</p>
+    <h2 class="story-heading">
+      그림은 서인이에게<br>
+      <em>치유</em>이고, 기쁨이고, 세상입니다.
+    </h2>
+    <div class="story-divider"></div>
+    <p class="story-body">
+      2024년, 서인이는 처음으로 붓을 잡았어요.<br><br>
+      세상을 조금 다르게 느끼는 아이지만,
+      그림 앞에서만큼은 누구보다 온전히 자기 자신이에요.
+      뎅뎅이처럼 순하고 맑은 눈으로 꽃을 보고, 새를 보고,
+      작은 애벌레 한 마리도 그냥 지나치지 않아요.<br><br>
+      아직 그림 실력은 많이 부족하지만, 그냥 좋아서, 행복해서 그려요.
+      붓을 잡는 순간부터 온전히 집중하고,
+      색을 고르고 칠하는 과정 하나하나가 즐거워요.
+      <strong>완성된 작품을 바라볼 때 느끼는 성취감</strong>은
+      말로 다 표현하기 어려울 만큼 크답니다.<br><br>
+      서인이가 사랑하는 것들이 화폭 위에 살아 숨쉬어요.
+      <strong>평생 즐길 수 있는 나만의 시간으로</strong>
+      이어가고 싶어요.
+    </p>
   </div>
 </section>
 
@@ -582,25 +527,21 @@ footer {
         <div class="work-placeholder" style="display:none">해바라기</div>
         <div class="work-overlay"><div class="work-label">해바라기</div></div>
       </div>
-
       <div class="work-item" onclick="lb('work02.jpg')">
         <img src="work02.jpg" alt="숲과 새" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="work-placeholder" style="display:none">숲과 새</div>
         <div class="work-overlay"><div class="work-label">숲과 새</div></div>
       </div>
-
       <div class="work-item" onclick="lb('work03.jpg')">
         <img src="work03.jpg" alt="야생화 정원" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="work-placeholder" style="display:none">야생화 정원</div>
         <div class="work-overlay"><div class="work-label">야생화 정원</div></div>
       </div>
-
       <div class="work-item" onclick="lb('work04.jpg')">
         <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="work-placeholder" style="display:none">애벌레 친구들</div>
         <div class="work-overlay"><div class="work-label">애벌레 친구들</div></div>
       </div>
-
       <div class="work-item" onclick="lb('work05.jpg')">
         <img src="work05.jpg" alt="닭" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="work-placeholder" style="display:none">닭</div>
@@ -611,11 +552,81 @@ footer {
   </div>
 </section>
 
-<!-- 02 SKETCHES -->
-<section id="sketches">
+<!-- 02 PROCESS -->
+<section id="process">
   <div class="section-wrap">
     <div class="section-header fade-in">
       <span class="section-num">02</span>
+      <h2 class="section-title">Process</h2>
+      <div class="section-line"></div>
+      <span class="section-sub">그리는 과정</span>
+    </div>
+    <div class="process-intro fade-in">
+      <p>
+        서인이에게 그림은 결과물보다 <strong>과정</strong>이 더 소중해요.
+        스케치부터 색을 올리고 완성하기까지,
+        한 획 한 획에 집중하는 그 시간이 서인이만의 힐링이에요.
+      </p>
+    </div>
+    <div class="process-layout fade-in">
+
+      <div class="process-item" onclick="lb('process01_01.jpg')">
+        <img src="process01_01.jpg" alt="과정 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 01</div>
+        <div class="process-badge">01</div>
+      </div>
+      <div class="process-item" onclick="lb('process02_01.jpg')">
+        <img src="process02_01.jpg" alt="과정 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 02</div>
+        <div class="process-badge">02</div>
+      </div>
+      <div class="process-item" onclick="lb('process03_01.jpg')">
+        <img src="process03_01.jpg" alt="과정 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 03</div>
+        <div class="process-badge">03</div>
+      </div>
+      <div class="process-item" onclick="lb('process04_01.jpg')">
+        <img src="process04_01.jpg" alt="과정 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 04</div>
+        <div class="process-badge">04</div>
+      </div>
+      <div class="process-item" onclick="lb('process02_03.jpg')">
+        <img src="process02_03.jpg" alt="과정 5" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 05</div>
+        <div class="process-badge">05</div>
+      </div>
+      <div class="process-item" onclick="lb('process02_06.jpg')">
+        <img src="process02_06.jpg" alt="과정 6" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 06</div>
+        <div class="process-badge">06</div>
+      </div>
+
+    </div>
+
+    <!-- 동영상 -->
+    <div class="video-row fade-in">
+      <div class="video-item">
+        <video controls playsinline preload="metadata">
+          <source src="etc_movie01.mp4" type="video/mp4">
+        </video>
+        <p class="video-label">그림 그리는 시간 01</p>
+      </div>
+      <div class="video-item">
+        <video controls playsinline preload="metadata">
+          <source src="etc_movie02.mp4" type="video/mp4">
+        </video>
+        <p class="video-label">그림 그리는 시간 02</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 03 SKETCHES -->
+<section id="sketches">
+  <div class="section-wrap">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
       <h2 class="section-title">Sketches</h2>
       <div class="section-line"></div>
       <span class="section-sub">습작</span>
@@ -627,62 +638,25 @@ footer {
         <div class="sketch-placeholder" style="display:none">습작 01</div>
         <div class="sketch-overlay"><span class="sketch-num">ETC · 01</span></div>
       </div>
-
       <div class="sketch-item" onclick="lb('etc04.jpg')">
         <img src="etc04.jpg" alt="습작 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="sketch-placeholder" style="display:none">습작 02</div>
         <div class="sketch-overlay"><span class="sketch-num">ETC · 02</span></div>
       </div>
-
       <div class="sketch-item" onclick="lb('etc05_03.jpg')">
         <img src="etc05_03.jpg" alt="습작 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="sketch-placeholder" style="display:none">습작 03</div>
         <div class="sketch-overlay"><span class="sketch-num">ETC · 03</span></div>
       </div>
-
       <div class="sketch-item" onclick="lb('etc06_01.jpg')">
         <img src="etc06_01.jpg" alt="습작 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <div class="sketch-placeholder" style="display:none">습작 04</div>
         <div class="sketch-overlay"><span class="sketch-num">ETC · 04</span></div>
       </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 03 PROCESS -->
-<section id="process">
-  <div class="section-wrap">
-    <div class="section-header fade-in">
-      <span class="section-num">03</span>
-      <h2 class="section-title">Process</h2>
-      <div class="section-line"></div>
-      <span class="section-sub">작품 과정</span>
-    </div>
-    <div class="process-layout fade-in">
-
-      <div class="process-item" onclick="lb('process01_01.jpg')">
-        <img src="process01_01.jpg" alt="과정 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 01</div>
-        <div class="process-badge">01</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process02_01.jpg')">
-        <img src="process02_01.jpg" alt="과정 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 02</div>
-        <div class="process-badge">02</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process03_01.jpg')">
-        <img src="process03_01.jpg" alt="과정 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 03</div>
-        <div class="process-badge">03</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process04_01.jpg')">
-        <img src="process04_01.jpg" alt="과정 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 04</div>
-        <div class="process-badge">04</div>
+      <div class="sketch-item" onclick="lb('etc07_01.jpg')">
+        <img src="etc07_01.jpg" alt="습작 5" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 05</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 05</span></div>
       </div>
 
     </div>
@@ -703,11 +677,10 @@ footer {
       <img src="exhibition01_01.jpg" alt="전시회" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ex-placeholder" style="display:none">전시 사진</div>
       <div class="ex-caption">
-        <div class="ex-caption-title">첫 번째 전시회</div>
-        <div class="ex-caption-sub">2024</div>
+        <div class="ex-caption-title">우리들의 마음, 꿈을 그리다</div>
+        <div class="ex-caption-sub">2026. 01. 24 — 28 · 강남구민회관</div>
       </div>
     </div>
-
     <div class="ex-item" onclick="lb('exhibition01_03.jpg')">
       <img src="exhibition01_03.jpg" alt="전시장에서" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ex-placeholder" style="display:none">전시 사진</div>
@@ -716,7 +689,6 @@ footer {
         <div class="ex-caption-sub">Exhibition View</div>
       </div>
     </div>
-
     <div class="ex-item" onclick="lb('exhibition01_04.jpg')">
       <img src="exhibition01_04.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ex-placeholder" style="display:none">전시 사진</div>
@@ -725,7 +697,6 @@ footer {
         <div class="ex-caption-sub">Exhibition View</div>
       </div>
     </div>
-
     <div class="ex-item" onclick="lb('exhibition01_05.jpg')">
       <img src="exhibition01_05.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ex-placeholder" style="display:none">전시 사진</div>
@@ -734,9 +705,16 @@ footer {
         <div class="ex-caption-sub">Exhibition View</div>
       </div>
     </div>
-
     <div class="ex-item" onclick="lb('exhibition01_07.jpg')">
       <img src="exhibition01_07.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="ex-placeholder" style="display:none">전시 사진</div>
+      <div class="ex-caption">
+        <div class="ex-caption-title">전시 현장</div>
+        <div class="ex-caption-sub">Exhibition View</div>
+      </div>
+    </div>
+    <div class="ex-item" onclick="lb('exhibition01_02.jpg')">
+      <img src="exhibition01_02.jpg" alt="전시 현장" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="ex-placeholder" style="display:none">전시 사진</div>
       <div class="ex-caption">
         <div class="ex-caption-title">전시 현장</div>
@@ -749,19 +727,30 @@ footer {
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-label fade-in">
-    자연을<br>그리는<br>아이, 최서인
+  <div class="about-left-label fade-in">
+    그림이 행복인 아이, 최서인
   </div>
   <div class="fade-in">
     <p class="about-body">
-      안녕하세요, 저는 최서인이에요.<br>
-      그림을 그리기 시작한 지 1년이 조금 넘었어요.<br><br>
-      자연 속의 꽃, 새, 작은 생물들을 좋아하고,
-      그것들을 화폭에 담을 때 가장 행복해요.
-      낙서하기, 보석십자수, 스티커북 붙이기를 즐기고
-      수영과 등산도 좋아해요.<br><br>
-      세상의 아름다운 것들을 하나하나 그려나가고 있습니다.
+      안녕하세요, 저는 최서인이에요.<br><br>
+      저는 세상을 조금 특별한 방식으로 느끼는 아이예요.
+      말보다 그림이 더 편할 때가 있고,
+      사람 많은 곳보다 자연이 더 좋아요.
+      꽃이 피어있는 걸 보면 오래 들여다보고,
+      새가 날아가면 한참 눈으로 따라가요.<br><br>
+      그런 제가 그림을 만났어요.
+      그림 앞에서는 아무것도 어렵지 않아요.
+      그냥 좋아서, 행복해서 그려요. 🎨
     </p>
+    <div class="about-quote">
+      <p>
+        붓을 잡는 순간부터 온전히 집중하고,
+        색을 고르고 칠하는 과정 하나하나가 즐거워요.<br>
+        완성된 작품을 바라볼 때 느끼는 성취감은
+        말로 다 표현하기 어려울 만큼 커요.<br><br>
+        그냥 좋아서, 행복해서 그려요. 🎨
+      </p>
+    </div>
     <div class="about-tags">
       <span class="tag">회화</span>
       <span class="tag">자연</span>
@@ -776,7 +765,7 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-logo">SEO<span>IN</span></div>
-  <div class="footer-copy">© 2025 SEOIN · All Rights Reserved</div>
+  <div class="footer-copy">© 2026 SEOIN · All Rights Reserved</div>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -797,13 +786,11 @@ footer {
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
 
-  // 스크롤 페이드인
   const obs = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.08 });
   document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
-  // 네비 활성화
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
