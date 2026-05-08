@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DDUNY — Art Portfolio</title>
+<title>SEOIN — Art Portfolio</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -91,10 +91,10 @@ nav {
 }
 .hero-name {
   font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-size: clamp(3.2rem, 6.5vw, 6rem);
   font-weight: 300;
   line-height: 1;
-  letter-spacing: 10px;
+  letter-spacing: 14px;
   color: var(--ink);
   margin-bottom: 28px;
   white-space: nowrap;
@@ -521,12 +521,12 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#hero">DDU<span>NY</span></a>
+  <a class="nav-logo" href="#hero">SEO<span>IN</span></a>
   <ul class="nav-links">
     <li><a href="#works">Works</a></li>
     <li><a href="#sketches">Sketches</a></li>
-    <li><a href="#exhibition">Exhibition</a></li>
     <li><a href="#process">Process</a></li>
+    <li><a href="#exhibition">Exhibition</a></li>
   </ul>
 </nav>
 
@@ -534,7 +534,7 @@ footer {
 <section id="hero">
   <div class="hero-left fade-in">
     <p class="hero-tag">Visual Artist · 2025 —</p>
-    <h1 class="hero-name">DDU<em>NY</em></h1>
+    <h1 class="hero-name">SEO<em>IN</em></h1>
 
     <p class="hero-desc">
       자연과 생명을 화폭에 담습니다.<br>
@@ -650,10 +650,49 @@ footer {
   </div>
 </section>
 
-<!-- 03 EXHIBITION -->
+<!-- 03 PROCESS -->
+<section id="process">
+  <div class="section-wrap">
+    <div class="section-header fade-in">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Process</h2>
+      <div class="section-line"></div>
+      <span class="section-sub">작품 과정</span>
+    </div>
+    <div class="process-layout fade-in">
+
+      <div class="process-item" onclick="lb('process01_01.jpg')">
+        <img src="process01_01.jpg" alt="과정 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 01</div>
+        <div class="process-badge">01</div>
+      </div>
+
+      <div class="process-item" onclick="lb('process02_01.jpg')">
+        <img src="process02_01.jpg" alt="과정 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 02</div>
+        <div class="process-badge">02</div>
+      </div>
+
+      <div class="process-item" onclick="lb('process03_01.jpg')">
+        <img src="process03_01.jpg" alt="과정 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 03</div>
+        <div class="process-badge">03</div>
+      </div>
+
+      <div class="process-item" onclick="lb('process04_01.jpg')">
+        <img src="process04_01.jpg" alt="과정 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="process-placeholder" style="display:none">과정 04</div>
+        <div class="process-badge">04</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 04 EXHIBITION -->
 <section id="exhibition">
   <div class="section-header fade-in">
-    <span class="section-num">03</span>
+    <span class="section-num">04</span>
     <h2 class="section-title">Exhibition</h2>
     <div class="section-line"></div>
     <span class="section-sub" style="color:rgba(255,255,255,0.3)">전시회</span>
@@ -708,54 +747,15 @@ footer {
   </div>
 </section>
 
-<!-- 04 PROCESS -->
-<section id="process">
-  <div class="section-wrap">
-    <div class="section-header fade-in">
-      <span class="section-num">04</span>
-      <h2 class="section-title">Process</h2>
-      <div class="section-line"></div>
-      <span class="section-sub">작품 과정</span>
-    </div>
-    <div class="process-layout fade-in">
-
-      <div class="process-item" onclick="lb('process01_01.jpg')">
-        <img src="process01_01.jpg" alt="과정 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 01</div>
-        <div class="process-badge">01</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process02_01.jpg')">
-        <img src="process02_01.jpg" alt="과정 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 02</div>
-        <div class="process-badge">02</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process03_01.jpg')">
-        <img src="process03_01.jpg" alt="과정 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 03</div>
-        <div class="process-badge">03</div>
-      </div>
-
-      <div class="process-item" onclick="lb('process04_01.jpg')">
-        <img src="process04_01.jpg" alt="과정 4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="process-placeholder" style="display:none">과정 04</div>
-        <div class="process-badge">04</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- ABOUT -->
 <section id="about">
   <div class="about-label fade-in">
-    자연을 그리는 아이, <br>최서인
+    자연을<br>그리는<br>아이, 최서인
   </div>
   <div class="fade-in">
     <p class="about-body">
       안녕하세요, 저는 최서인이에요.<br>
-      그림을 그리기 시작한 지 1년 남짓 되었어요.<br><br>
+      그림을 그리기 시작한 지 1년이 조금 넘었어요.<br><br>
       자연 속의 꽃, 새, 작은 생물들을 좋아하고,
       그것들을 화폭에 담을 때 가장 행복해요.
       낙서하기, 보석십자수, 스티커북 붙이기를 즐기고
@@ -775,8 +775,8 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">DDU<span>NY</span></div>
-  <div class="footer-copy">© 2024 DDUNY · All Rights Reserved</div>
+  <div class="footer-logo">SEO<span>IN</span></div>
+  <div class="footer-copy">© 2025 SEOIN · All Rights Reserved</div>
 </footer>
 
 <!-- LIGHTBOX -->
