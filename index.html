@@ -320,7 +320,7 @@ nav {
   grid-template-columns: repeat(6, 1fr);
   gap: 3px;
 }
-.process-item { position: relative; overflow: hidden; aspect-ratio: 2/3; background: var(--light); cursor: pointer; }
+.process-item { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--light); cursor: pointer; }
 .process-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s, filter 0.4s; filter: saturate(0.82); display: block; }
 .process-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
 .process-badge { position: absolute; top: 14px; left: 14px; font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 3px; color: white; background: rgba(58,107,138,0.85); padding: 4px 12px; backdrop-filter: blur(4px); }
@@ -364,8 +364,8 @@ nav {
 
 /* ── SKETCHES ── */
 #sketches { background: var(--white); }
-.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-.sketch-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
+.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+.sketch-item { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
 .sketch-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.4s; filter: saturate(0.75) sepia(0.06); }
 .sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
 .sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 16px; }
@@ -382,15 +382,15 @@ nav {
 #exhibition .section-line { background: linear-gradient(90deg, var(--deep), transparent); }
 .ex-layout {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto auto;
-  gap: 12px;
+  gap: 8px;
 }
 .ex-item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  aspect-ratio: 4/3;
+  aspect-ratio: 5/3;
 }
 .ex-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.4s, transform 0.55s; display: block; }
 .ex-item:hover img { opacity: 1; transform: scale(1.04); }
