@@ -64,6 +64,65 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--deep); }
 
+/* ── 햄버거 버튼 ── */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px; height: 36px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+  z-index: 210;
+}
+.hamburger span {
+  display: block;
+  width: 24px; height: 1.5px;
+  background: var(--ink);
+  transition: transform 0.35s ease, opacity 0.25s ease;
+  transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── 모바일 드로어 ── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 205;
+  background: rgba(248,246,242,0.98);
+  backdrop-filter: blur(20px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 36px;
+  opacity: 0;
+  transform: translateY(-12px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+.mobile-menu.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.mobile-menu a {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  text-transform: uppercase;
+  opacity: 0.5;
+  transition: opacity 0.2s, color 0.2s;
+}
+.mobile-menu a:hover { opacity: 1; color: var(--deep); }
+
 /* ── HERO ── */
 #hero {
   min-height: 100vh;
@@ -388,6 +447,39 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 .footer-logo span { color: var(--sky); font-style: italic; }
 .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; }
 
+/* ── TOP BUTTON ── */
+#top-btn {
+  position: fixed;
+  bottom: 36px;
+  right: 36px;
+  z-index: 300;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--deep);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s, transform 0.35s, background 0.2s;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(58,107,138,0.35);
+}
+#top-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+#top-btn:hover { background: var(--deeper); }
+#top-btn svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
 /* ── LIGHTBOX ── */
 .lightbox { display: none; position: fixed; inset: 0; background: rgba(15,15,28,0.96); z-index: 999; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
 .lightbox.open { display: flex; }
@@ -425,6 +517,18 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
+
+/* 작은 PC / 태블릿 가로 (900px ~ 1200px) */
+@media (max-width: 1200px) {
+  .works-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .work-item:nth-child(1) { grid-column: span 1; aspect-ratio: 4/3; }
+  .work-item:nth-child(2) { grid-column: span 1; aspect-ratio: 4/3; }
+  .work-item:nth-child(3) { grid-column: span 1; aspect-ratio: 4/3; }
+  .work-item:nth-child(4) { grid-column: span 1; aspect-ratio: 4/3; }
+  .work-item:nth-child(5) { grid-column: span 2; aspect-ratio: 8/3; }
+}
+
+/* 태블릿 세로 / 모바일 가로 (600px ~ 900px) */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   .nav-links { gap: 20px; }
@@ -433,15 +537,33 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
   .hero-left { padding: 100px 24px 48px; }
   .hero-right { min-height: 260px; }
   .section-wrap, #exhibition, #about, footer, #story { padding: 60px 24px; }
-  .works-grid { grid-template-columns: 1fr 1fr; }
-  .work-item:nth-child(1) { grid-column: span 2; }
-  .work-item:nth-child(2), .work-item:nth-child(3), .work-item:nth-child(4), .work-item:nth-child(5) { grid-column: span 1; }
+  .works-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .work-item:nth-child(1),
+  .work-item:nth-child(2),
+  .work-item:nth-child(3),
+  .work-item:nth-child(4),
+  .work-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
   .sketches-grid { grid-template-columns: 1fr 1fr; }
   .ex-layout { grid-template-columns: 1fr; }
   .ex-item:nth-child(n) { aspect-ratio: 4/3; min-height: unset; }
   .process-layout { grid-template-columns: repeat(2, 1fr); }
   #about { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 40px 24px; }
+}
+
+/* 모바일 세로 (~ 600px) */
+@media (max-width: 600px) {
+  .works-grid { grid-template-columns: 1fr; gap: 6px; }
+  .work-item:nth-child(1),
+  .work-item:nth-child(2),
+  .work-item:nth-child(3),
+  .work-item:nth-child(4),
+  .work-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
+  .sketches-grid { grid-template-columns: 1fr; }
+  .video-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+  .mobile-menu { display: flex; }
 }
 </style>
 </head>
@@ -457,7 +579,19 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     <li><a href="#sketches">Sketches</a></li>
     <li><a href="#exhibition">Exhibition</a></li>
   </ul>
+  <button class="hamburger" id="hamburger" aria-label="메뉴">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- 모바일 메뉴 드로어 -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#story"     onclick="closeMenu()">Story</a>
+  <a href="#works"     onclick="closeMenu()">Works</a>
+  <a href="#process"   onclick="closeMenu()">Process</a>
+  <a href="#sketches"  onclick="closeMenu()">Sketches</a>
+  <a href="#exhibition" onclick="closeMenu()">Exhibition</a>
+</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -776,6 +910,11 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
   <div class="footer-copy">© 2026 SEOIN · All Rights Reserved</div>
 </footer>
 
+<!-- TOP BUTTON -->
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">
+  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLb()">
   <button class="lb-close" onclick="closeLb()">✕ close</button>
@@ -808,6 +947,25 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
       a.classList.remove('active');
       if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
     });
+  });
+  // 햄버거 메뉴
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  });
+  function closeMenu() {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // TOP 버튼
+  const topBtn = document.getElementById('top-btn');
+  window.addEventListener('scroll', () => {
+    topBtn.classList.toggle('show', window.scrollY > 300);
   });
 </script>
 </body>
