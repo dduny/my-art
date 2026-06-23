@@ -232,7 +232,7 @@ nav {
 /* 1줄: 큰 작품 3개 */
 .works-row1 {
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 3px;
   margin-bottom: 3px;
 }
@@ -323,10 +323,9 @@ nav {
 }
 .sketch-item img {
   width: 100%; height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.5s, filter 0.4s;
   filter: saturate(0.85);
-  padding: 4px;
 }
 .sketch-item:hover img { transform: scale(1.03); filter: saturate(1); }
 .sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 12px; }
@@ -417,7 +416,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 
 /* etc09 묶음 */
 .etc09-group {
-  margin-top: 24px;
+  margin-top: 12px;
 }
 .etc09-label {
   font-family: 'Cormorant Garamond', serif;
@@ -429,7 +428,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 }
 .etc09-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 12px;
 }
 
