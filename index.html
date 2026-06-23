@@ -227,15 +227,23 @@ nav {
 #works { background: var(--white); }
 .works-grid {
   display: grid;
-  grid-template-columns: repeat(12, 1fr);
   gap: 3px;
 }
-.work-item { position: relative; overflow: hidden; background: var(--light); cursor: pointer; }
-.work-item:nth-child(1) { grid-column: span 7; aspect-ratio: 7/5; }
-.work-item:nth-child(2) { grid-column: span 5; aspect-ratio: 5/5; }
-.work-item:nth-child(3) { grid-column: span 4; aspect-ratio: 4/4; }
-.work-item:nth-child(4) { grid-column: span 4; aspect-ratio: 4/4; }
-.work-item:nth-child(5) { grid-column: span 4; aspect-ratio: 4/4; }
+/* 1줄: 큰 작품 3개 */
+.works-row1 {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 3px;
+  margin-bottom: 3px;
+}
+/* 2줄: 나머지 4개 균등 */
+.works-row2 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.work-item { position: relative; overflow: hidden; background: var(--light); cursor: pointer; aspect-ratio: 4/3; }
+.work-item.tall { aspect-ratio: 3/4; }
 .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: saturate(0.88); display: block; }
 .work-item:hover img { transform: scale(1.05); filter: saturate(1.1); }
 .work-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px 28px; }
@@ -305,12 +313,24 @@ nav {
 
 /* ── SKETCHES ── */
 #sketches { background: var(--white); }
-.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
-.sketch-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
-.sketch-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.4s; filter: saturate(0.75) sepia(0.06); }
-.sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
-.sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 16px; }
-.sketch-item:hover .sketch-overlay { background: rgba(26,26,46,0.35); }
+.sketches-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.sketch-item {
+  position: relative; overflow: hidden;
+  aspect-ratio: 2/3;
+  background: var(--warm);
+  cursor: pointer;
+  border: 1px solid rgba(168,200,232,0.2);
+}
+.sketch-item img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  transition: transform 0.5s, filter 0.4s;
+  filter: saturate(0.85);
+  padding: 4px;
+}
+.sketch-item:hover img { transform: scale(1.03); filter: saturate(1); }
+.sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 12px; }
+.sketch-item:hover .sketch-overlay { background: rgba(26,26,46,0.3); }
 .sketch-num { font-family: 'Cormorant Garamond', serif; font-size: 0.72rem; letter-spacing: 3px; color: white; opacity: 0; transition: opacity 0.3s; }
 .sketch-item:hover .sketch-num { opacity: 1; }
 .sketch-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.85rem; background: linear-gradient(135deg, var(--light), var(--warm)); }
@@ -397,7 +417,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 
 /* etc09 묶음 */
 .etc09-group {
-  margin-top: 32px;
+  margin-top: 24px;
 }
 .etc09-label {
   font-family: 'Cormorant Garamond', serif;
@@ -410,7 +430,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 .etc09-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 12px;
 }
 
 /* ── 동영상 ── */
@@ -548,40 +568,47 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     </div>
     <div class="works-grid fade-in">
 
-      <div class="work-item" onclick="lb('work01.jpg')">
-        <img src="work01.jpg" alt="해바라기" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">해바라기</div>
-        <div class="work-overlay"><div class="work-label">해바라기</div></div>
+      <!-- 1줄: 3개 -->
+      <div class="works-row1">
+        <div class="work-item" onclick="lb('work01.jpg')">
+          <img src="work01.jpg" alt="해바라기" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">해바라기</div>
+          <div class="work-overlay"><div class="work-label">해바라기</div></div>
+        </div>
+        <div class="work-item" onclick="lb('work02.jpg')">
+          <img src="work02.jpg" alt="숲과 새" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">숲과 새</div>
+          <div class="work-overlay"><div class="work-label">숲과 새</div></div>
+        </div>
+        <div class="work-item" onclick="lb('work03.jpg')">
+          <img src="work03.jpg" alt="야생화 정원" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">야생화 정원</div>
+          <div class="work-overlay"><div class="work-label">야생화 정원</div></div>
+        </div>
       </div>
-      <div class="work-item" onclick="lb('work02.jpg')">
-        <img src="work02.jpg" alt="숲과 새" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">숲과 새</div>
-        <div class="work-overlay"><div class="work-label">숲과 새</div></div>
-      </div>
-      <div class="work-item" onclick="lb('work03.jpg')">
-        <img src="work03.jpg" alt="야생화 정원" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">야생화 정원</div>
-        <div class="work-overlay"><div class="work-label">야생화 정원</div></div>
-      </div>
-      <div class="work-item" onclick="lb('work04.jpg')">
-        <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">애벌레 친구들</div>
-        <div class="work-overlay"><div class="work-label">애벌레 친구들</div></div>
-      </div>
-      <div class="work-item" onclick="lb('work05.jpg')">
-        <img src="work05.jpg" alt="닭" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">닭</div>
-        <div class="work-overlay"><div class="work-label">닭</div></div>
-      </div>
-      <div class="work-item" onclick="lb('work06.jpg')">
-        <img src="work06.jpg" alt="토끼와 새들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">토끼와 새들</div>
-        <div class="work-overlay"><div class="work-label">토끼와 새들</div></div>
-      </div>
-      <div class="work-item" onclick="lb('work08.jpg')">
-        <img src="work08.jpg" alt="기린기린" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="work-placeholder" style="display:none">기린기린</div>
-        <div class="work-overlay"><div class="work-label">기린기린</div></div>
+
+      <!-- 2줄: 4개 -->
+      <div class="works-row2">
+        <div class="work-item" onclick="lb('work04.jpg')">
+          <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">애벌레 친구들</div>
+          <div class="work-overlay"><div class="work-label">애벌레 친구들</div></div>
+        </div>
+        <div class="work-item" onclick="lb('work05.jpg')">
+          <img src="work05.jpg" alt="닭" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">닭</div>
+          <div class="work-overlay"><div class="work-label">닭</div></div>
+        </div>
+        <div class="work-item" onclick="lb('work06.jpg')">
+          <img src="work06.jpg" alt="토끼와 새들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">토끼와 새들</div>
+          <div class="work-overlay"><div class="work-label">토끼와 새들</div></div>
+        </div>
+        <div class="work-item" onclick="lb('work08.jpg')">
+          <img src="work08.jpg" alt="기린기린" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="work-placeholder" style="display:none">기린기린</div>
+          <div class="work-overlay"><div class="work-label">기린기린</div></div>
+        </div>
       </div>
 
     </div>
