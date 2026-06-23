@@ -64,65 +64,6 @@ nav {
 }
 .nav-links a:hover, .nav-links a.active { opacity: 1; color: var(--deep); }
 
-/* ── 햄버거 버튼 ── */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  gap: 5px;
-  width: 36px; height: 36px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 4px;
-  z-index: 210;
-}
-.hamburger span {
-  display: block;
-  width: 24px; height: 1.5px;
-  background: var(--ink);
-  transition: transform 0.35s ease, opacity 0.25s ease;
-  transform-origin: center;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-/* ── 모바일 드로어 ── */
-.mobile-menu {
-  display: none;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 205;
-  background: rgba(248,246,242,0.98);
-  backdrop-filter: blur(20px);
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 36px;
-  opacity: 0;
-  transform: translateY(-12px);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  pointer-events: none;
-}
-.mobile-menu.open {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-.mobile-menu a {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2rem;
-  font-weight: 300;
-  letter-spacing: 6px;
-  color: var(--ink);
-  text-decoration: none;
-  text-transform: uppercase;
-  opacity: 0.5;
-  transition: opacity 0.2s, color 0.2s;
-}
-.mobile-menu a:hover { opacity: 1; color: var(--deep); }
-
 /* ── HERO ── */
 #hero {
   min-height: 100vh;
@@ -130,35 +71,13 @@ nav {
   grid-template-columns: 1fr 1fr;
   padding-top: 56px;
   position: relative;
-  background: var(--paper);
 }
 .hero-left {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   padding: 80px 56px 80px 80px;
 }
-.hero-collage {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 4px;
-  overflow: hidden;
-  opacity: 0;
-  animation: fadeIn 1.2s 0.3s ease forwards;
-}
-.hero-collage-item { overflow: hidden; }
-.hero-collage-item:nth-child(1) { grid-row: span 2; }
-.hero-collage-item:nth-child(4) { grid-column: span 2; }
-.hero-collage-item img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.9);
-  transition: transform 0.6s ease, filter 0.4s;
-}
-.hero-collage-item:hover img { transform: scale(1.05); filter: saturate(1.1); }
 .hero-eyebrow {
   font-size: 0.65rem;
   letter-spacing: 5px;
@@ -213,7 +132,21 @@ nav {
   text-transform: uppercase;
   margin-top: 5px;
 }
-
+.hero-right {
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 1.2s 0.3s ease forwards;
+}
+.hero-right img { width: 100%; height: 100%; object-fit: cover; }
+.hero-placeholder {
+  width: 100%; height: 100%; min-height: 600px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 10px;
+  background: linear-gradient(160deg, var(--light) 0%, var(--warm) 100%);
+}
+.hero-placeholder span { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--accent); }
+.hero-placeholder small { font-size: 0.7rem; color: #bbb; }
 
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(24px); }
@@ -298,11 +231,11 @@ nav {
   gap: 3px;
 }
 .work-item { position: relative; overflow: hidden; background: var(--light); cursor: pointer; }
-.work-item:nth-child(1) { grid-column: span 4; aspect-ratio: 4/3; }
-.work-item:nth-child(2) { grid-column: span 4; aspect-ratio: 4/3; }
-.work-item:nth-child(3) { grid-column: span 4; aspect-ratio: 4/3; }
-.work-item:nth-child(4) { grid-column: span 5; aspect-ratio: 5/3; }
-.work-item:nth-child(5) { grid-column: span 7; aspect-ratio: 7/3; }
+.work-item:nth-child(1) { grid-column: span 7; aspect-ratio: 7/5; }
+.work-item:nth-child(2) { grid-column: span 5; aspect-ratio: 5/5; }
+.work-item:nth-child(3) { grid-column: span 4; aspect-ratio: 4/4; }
+.work-item:nth-child(4) { grid-column: span 4; aspect-ratio: 4/4; }
+.work-item:nth-child(5) { grid-column: span 4; aspect-ratio: 4/4; }
 .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: saturate(0.88); display: block; }
 .work-item:hover img { transform: scale(1.05); filter: saturate(1.1); }
 .work-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px 28px; }
@@ -328,7 +261,7 @@ nav {
   grid-template-columns: repeat(6, 1fr);
   gap: 3px;
 }
-.process-item { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--light); cursor: pointer; }
+.process-item { position: relative; overflow: hidden; aspect-ratio: 2/3; background: var(--light); cursor: pointer; }
 .process-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s, filter 0.4s; filter: saturate(0.82); display: block; }
 .process-item:hover img { transform: scale(1.06); filter: saturate(1.05); }
 .process-badge { position: absolute; top: 14px; left: 14px; font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; letter-spacing: 3px; color: white; background: rgba(58,107,138,0.85); padding: 4px 12px; backdrop-filter: blur(4px); }
@@ -372,8 +305,8 @@ nav {
 
 /* ── SKETCHES ── */
 #sketches { background: var(--white); }
-.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
-.sketch-item { position: relative; overflow: hidden; aspect-ratio: 4/3; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
+.sketches-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.sketch-item { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--light); cursor: pointer; border: 1px solid rgba(168,200,232,0.2); }
 .sketch-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s, filter 0.4s; filter: saturate(0.75) sepia(0.06); }
 .sketch-item:hover img { transform: scale(1.05); filter: saturate(1); }
 .sketch-overlay { position: absolute; inset: 0; background: rgba(26,26,46,0); transition: background 0.3s; display: flex; align-items: flex-end; padding: 16px; }
@@ -390,15 +323,15 @@ nav {
 #exhibition .section-line { background: linear-gradient(90deg, var(--deep), transparent); }
 .ex-layout {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto auto;
-  gap: 8px;
+  gap: 12px;
 }
 .ex-item {
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  aspect-ratio: 5/3;
+  aspect-ratio: 4/3;
 }
 .ex-item img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; transition: opacity 0.4s, transform 0.55s; display: block; }
 .ex-item:hover img { opacity: 1; transform: scale(1.04); }
@@ -455,45 +388,30 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 .footer-logo span { color: var(--sky); font-style: italic; }
 .footer-copy { font-size: 0.68rem; color: rgba(255,255,255,0.28); letter-spacing: 1px; }
 
-/* ── TOP BUTTON ── */
-#top-btn {
-  position: fixed;
-  bottom: 36px;
-  right: 36px;
-  z-index: 300;
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: var(--deep);
-  color: white;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 0.65rem;
-  letter-spacing: 1px;
-  opacity: 0;
-  transform: translateY(16px);
-  transition: opacity 0.35s, transform 0.35s, background 0.2s;
-  pointer-events: none;
-  box-shadow: 0 4px 20px rgba(58,107,138,0.35);
-}
-#top-btn.show {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-#top-btn:hover { background: var(--deeper); }
-#top-btn svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-
 /* ── LIGHTBOX ── */
 .lightbox { display: none; position: fixed; inset: 0; background: rgba(15,15,28,0.96); z-index: 999; align-items: center; justify-content: center; padding: 40px; cursor: zoom-out; }
 .lightbox.open { display: flex; }
 .lightbox img { max-width: 88vw; max-height: 88vh; object-fit: contain; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
 .lb-close { position: absolute; top: 24px; right: 32px; font-size: 1.3rem; color: white; cursor: pointer; background: none; border: none; opacity: 0.45; transition: opacity 0.2s; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px; }
 .lb-close:hover { opacity: 1; }
+
+/* etc09 묶음 */
+.etc09-group {
+  margin-top: 32px;
+}
+.etc09-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.78rem;
+  letter-spacing: 4px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.etc09-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
 
 /* ── 동영상 ── */
 .video-row {
@@ -525,55 +443,23 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 .fade-in.visible { opacity: 1; transform: translateY(0); }
 
 /* ── RESPONSIVE ── */
-
-/* 작은 PC / 태블릿 가로 (900px ~ 1200px) */
-@media (max-width: 1200px) {
-  .works-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
-  .work-item:nth-child(1) { grid-column: span 1; aspect-ratio: 4/3; }
-  .work-item:nth-child(2) { grid-column: span 1; aspect-ratio: 4/3; }
-  .work-item:nth-child(3) { grid-column: span 1; aspect-ratio: 4/3; }
-  .work-item:nth-child(4) { grid-column: span 1; aspect-ratio: 4/3; }
-  .work-item:nth-child(5) { grid-column: span 2; aspect-ratio: 8/3; }
-}
-
-/* 태블릿 세로 / 모바일 가로 (600px ~ 900px) */
 @media (max-width: 900px) {
   nav { padding: 16px 24px; }
   .nav-links { gap: 20px; }
   .nav-links a { font-size: 0.6rem; }
   #hero { grid-template-columns: 1fr; }
-  .hero-left { padding: 80px 24px 48px; }
-  .hero-collage { grid-template-columns: repeat(3, 1fr); grid-template-rows: auto; min-height: 200px; }
-  .hero-collage-item:nth-child(1) { grid-row: span 1; }
-  .hero-collage-item:nth-child(4) { grid-column: span 1; }
+  .hero-left { padding: 100px 24px 48px; }
+  .hero-right { min-height: 260px; }
   .section-wrap, #exhibition, #about, footer, #story { padding: 60px 24px; }
-  .works-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
-  .work-item:nth-child(1),
-  .work-item:nth-child(2),
-  .work-item:nth-child(3),
-  .work-item:nth-child(4),
-  .work-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
+  .works-grid { grid-template-columns: 1fr 1fr; }
+  .work-item:nth-child(1) { grid-column: span 2; }
+  .work-item:nth-child(2), .work-item:nth-child(3), .work-item:nth-child(4), .work-item:nth-child(5) { grid-column: span 1; }
   .sketches-grid { grid-template-columns: 1fr 1fr; }
   .ex-layout { grid-template-columns: 1fr; }
   .ex-item:nth-child(n) { aspect-ratio: 4/3; min-height: unset; }
   .process-layout { grid-template-columns: repeat(2, 1fr); }
   #about { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 40px 24px; }
-}
-
-/* 모바일 세로 (~ 600px) */
-@media (max-width: 600px) {
-  .works-grid { grid-template-columns: 1fr; gap: 6px; }
-  .work-item:nth-child(1),
-  .work-item:nth-child(2),
-  .work-item:nth-child(3),
-  .work-item:nth-child(4),
-  .work-item:nth-child(5) { grid-column: span 1; aspect-ratio: 4/3; }
-  .sketches-grid { grid-template-columns: 1fr; }
-  .video-row { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .hamburger { display: flex; }
-  .mobile-menu { display: flex; }
 }
 </style>
 </head>
@@ -589,19 +475,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     <li><a href="#sketches">Sketches</a></li>
     <li><a href="#exhibition">Exhibition</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="메뉴">
-    <span></span><span></span><span></span>
-  </button>
 </nav>
-
-<!-- 모바일 메뉴 드로어 -->
-<div class="mobile-menu" id="mobileMenu">
-  <a href="#story"     onclick="closeMenu()">Story</a>
-  <a href="#works"     onclick="closeMenu()">Works</a>
-  <a href="#process"   onclick="closeMenu()">Process</a>
-  <a href="#sketches"  onclick="closeMenu()">Sketches</a>
-  <a href="#exhibition" onclick="closeMenu()">Exhibition</a>
-</div>
 
 <!-- HERO -->
 <section id="hero">
@@ -627,21 +501,11 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
       </div>
     </div>
   </div>
-  <div class="hero-collage">
-    <div class="hero-collage-item">
-      <img src="work01.jpg" alt="해바라기" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-collage-item">
-      <img src="work02.jpg" alt="숲과 새" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-collage-item">
-      <img src="work03.jpg" alt="야생화 정원" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-collage-item">
-      <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none'">
-    </div>
-    <div class="hero-collage-item">
-      <img src="work05.jpg" alt="닭" onerror="this.style.display='none'">
+  <div class="hero-right">
+    <img src="work01.jpg" alt="대표작" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="hero-placeholder" style="display:none">
+      <span>대표 작품</span>
+      <small>work01.jpg</small>
     </div>
   </div>
 </section>
@@ -709,6 +573,16 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
         <div class="work-placeholder" style="display:none">닭</div>
         <div class="work-overlay"><div class="work-label">닭</div></div>
       </div>
+      <div class="work-item" onclick="lb('work06.jpg')">
+        <img src="work06.jpg" alt="토끼와 새들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">토끼와 새들</div>
+        <div class="work-overlay"><div class="work-label">토끼와 새들</div></div>
+      </div>
+      <div class="work-item" onclick="lb('work08.jpg')">
+        <img src="work08.jpg" alt="기린기린" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="work-placeholder" style="display:none">기린기린</div>
+        <div class="work-overlay"><div class="work-label">기린기린</div></div>
+      </div>
 
     </div>
   </div>
@@ -768,13 +642,13 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     <!-- 동영상 -->
     <div class="video-row fade-in">
       <div class="video-item">
-        <video controls playsinline preload="metadata" muted>
+        <video controls playsinline preload="metadata" muted onloadedmetadata="this.muted=true">
           <source src="etc_movie01.mp4" type="video/mp4">
         </video>
         <p class="video-label">그림 그리는 시간 01</p>
       </div>
       <div class="video-item">
-        <video controls playsinline preload="metadata" muted>
+        <video controls playsinline preload="metadata" muted onloadedmetadata="this.muted=true">
           <source src="etc_movie02.mp4" type="video/mp4">
         </video>
         <p class="video-label">그림 그리는 시간 02</p>
@@ -820,7 +694,39 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
         <div class="sketch-placeholder" style="display:none">습작 05</div>
         <div class="sketch-overlay"><span class="sketch-num">ETC · 05</span></div>
       </div>
+      <div class="sketch-item" onclick="lb('etc08.jpg')">
+        <img src="etc08.jpg" alt="습작 6" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="sketch-placeholder" style="display:none">습작 06</div>
+        <div class="sketch-overlay"><span class="sketch-num">ETC · 06</span></div>
+      </div>
 
+    </div>
+
+    <!-- etc09 묶음 -->
+    <div class="etc09-group fade-in">
+      <p class="etc09-label">ETC · 09</p>
+      <div class="etc09-grid">
+        <div class="sketch-item" onclick="lb('etc09_1.jpg')">
+          <img src="etc09_1.jpg" alt="etc09-1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sketch-placeholder" style="display:none">etc09-1</div>
+          <div class="sketch-overlay"><span class="sketch-num">01</span></div>
+        </div>
+        <div class="sketch-item" onclick="lb('etc09_2.jpg')">
+          <img src="etc09_2.jpg" alt="etc09-2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sketch-placeholder" style="display:none">etc09-2</div>
+          <div class="sketch-overlay"><span class="sketch-num">02</span></div>
+        </div>
+        <div class="sketch-item" onclick="lb('etc09_3.jpg')">
+          <img src="etc09_3.jpg" alt="etc09-3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sketch-placeholder" style="display:none">etc09-3</div>
+          <div class="sketch-overlay"><span class="sketch-num">03</span></div>
+        </div>
+        <div class="sketch-item" onclick="lb('etc09_4.jpg')">
+          <img src="etc09_4.jpg" alt="etc09-4" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="sketch-placeholder" style="display:none">etc09-4</div>
+          <div class="sketch-overlay"><span class="sketch-num">04</span></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -930,11 +836,6 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
   <div class="footer-copy">© 2026 SEOIN · All Rights Reserved</div>
 </footer>
 
-<!-- TOP BUTTON -->
-<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="맨 위로">
-  <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-</button>
-
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLb()">
   <button class="lb-close" onclick="closeLb()">✕ close</button>
@@ -967,25 +868,6 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
       a.classList.remove('active');
       if (a.getAttribute('href') === '#' + cur) a.classList.add('active');
     });
-  });
-  // 햄버거 메뉴
-  const hamburger = document.getElementById('hamburger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  hamburger.addEventListener('click', () => {
-    const isOpen = mobileMenu.classList.toggle('open');
-    hamburger.classList.toggle('open', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-  function closeMenu() {
-    mobileMenu.classList.remove('open');
-    hamburger.classList.remove('open');
-    document.body.style.overflow = '';
-  }
-
-  // TOP 버튼
-  const topBtn = document.getElementById('top-btn');
-  window.addEventListener('scroll', () => {
-    topBtn.classList.toggle('show', window.scrollY > 300);
   });
 </script>
 </body>
