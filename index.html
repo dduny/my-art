@@ -470,13 +470,15 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
   .hero-left { padding: 100px 24px 48px; }
   .hero-right { min-height: 260px; }
   .section-wrap, #exhibition, #about, footer, #story { padding: 60px 24px; }
-  .works-grid { grid-template-columns: 1fr 1fr; }
-  .work-item:nth-child(1) { grid-column: span 2; }
-  .work-item:nth-child(2), .work-item:nth-child(3), .work-item:nth-child(4), .work-item:nth-child(5) { grid-column: span 1; }
-  .sketches-grid { grid-template-columns: 1fr 1fr; }
-  .ex-layout { grid-template-columns: 1fr; }
+  /* Works: 모바일에서 1줄 2장, 2줄 2장씩 */
+  .works-row1 { grid-template-columns: 1fr 1fr; }
+  .works-row2 { grid-template-columns: 1fr 1fr; }
+  .sketches-grid { grid-template-columns: repeat(3, 1fr); }
+  .etc09-grid { grid-template-columns: repeat(3, 1fr); }
+  .ex-layout { grid-template-columns: 1fr 1fr; }
   .ex-item:nth-child(n) { aspect-ratio: 4/3; min-height: unset; }
-  .process-layout { grid-template-columns: repeat(2, 1fr); }
+  .process-layout { grid-template-columns: repeat(3, 1fr); }
+  .video-row { grid-template-columns: 1fr; }
   #about { grid-template-columns: 1fr; gap: 40px; }
   footer { flex-direction: column; gap: 12px; text-align: center; padding: 40px 24px; }
 }
@@ -730,7 +732,6 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
 
     <!-- etc09 묶음 -->
     <div class="etc09-group fade-in">
-      <p class="etc09-label">ETC · 09</p>
       <div class="etc09-grid">
         <div class="sketch-item" onclick="lb('etc09_1.jpg')">
           <img src="etc09_1.jpg" alt="etc09-1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
