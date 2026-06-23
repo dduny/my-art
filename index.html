@@ -225,31 +225,33 @@ nav {
 
 /* ── WORKS ── */
 #works { background: var(--white); }
-.works-grid {
-  display: grid;
-  gap: 3px;
-}
-/* 1줄: 큰 작품 3개 */
-.works-row1 {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 3px;
-  margin-bottom: 3px;
-}
-/* 2줄: 나머지 4개 균등 */
-.works-row2 {
+.works-grid { }
+.works-inner {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 3px;
 }
+/* 첫 3개는 더 크게 */
+.works-inner .work-item:nth-child(1),
+.works-inner .work-item:nth-child(2),
+.works-inner .work-item:nth-child(3) {
+  grid-column: span 1;
+  aspect-ratio: 4/3.2;
+}
 .work-item { position: relative; overflow: hidden; background: var(--light); cursor: pointer; aspect-ratio: 4/3; }
-.work-item.tall { aspect-ratio: 3/4; }
 .work-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s; filter: saturate(0.88); display: block; }
 .work-item:hover img { transform: scale(1.05); filter: saturate(1.1); }
 .work-overlay { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(26,26,46,0.72) 0%, transparent 55%); opacity: 0; transition: opacity 0.4s; display: flex; align-items: flex-end; padding: 24px 28px; }
 .work-item:hover .work-overlay { opacity: 1; }
 .work-label { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; font-style: italic; color: white; }
 .work-placeholder { width: 100%; height: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--accent); font-size: 0.9rem; background: linear-gradient(135deg, var(--light), var(--warm)); }
+
+/* 첫 3개는 3열로 */
+.works-inner .work-item:nth-child(1) { grid-column: 1; }
+.works-inner .work-item:nth-child(2) { grid-column: 2; }
+.works-inner .work-item:nth-child(3) { grid-column: 3; }
+/* 4번째는 새 줄 시작 */
+.works-inner .work-item:nth-child(4) { grid-column: 1; }
 
 /* ── PROCESS (서사의 핵심) ── */
 #process { background: var(--paper); }
@@ -470,9 +472,12 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
   .hero-left { padding: 100px 24px 48px; }
   .hero-right { min-height: 260px; }
   .section-wrap, #exhibition, #about, footer, #story { padding: 60px 24px; }
-  /* Works: 모바일에서 1줄 2장, 2줄 2장씩 */
-  .works-row1 { grid-template-columns: 1fr 1fr; }
-  .works-row2 { grid-template-columns: 1fr 1fr; }
+  /* Works: 모바일에서 2열로 순차 배치 */
+  .works-inner { grid-template-columns: repeat(2, 1fr); }
+  .works-inner .work-item:nth-child(1),
+  .works-inner .work-item:nth-child(2),
+  .works-inner .work-item:nth-child(3),
+  .works-inner .work-item:nth-child(4) { grid-column: span 1; }
   .sketches-grid { grid-template-columns: repeat(3, 1fr); }
   .etc09-grid { grid-template-columns: repeat(3, 1fr); }
   .ex-layout { grid-template-columns: 1fr 1fr; }
@@ -509,7 +514,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     </p>
     <div class="hero-stats">
       <div>
-        <div class="stat-num">5</div>
+        <div class="stat-num">7</div>
         <div class="stat-label">Works</div>
       </div>
       <div>
@@ -569,8 +574,7 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
     </div>
     <div class="works-grid fade-in">
 
-      <!-- 1줄: 3개 -->
-      <div class="works-row1">
+      <div class="works-inner">
         <div class="work-item" onclick="lb('work01.jpg')">
           <img src="work01.jpg" alt="해바라기" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="work-placeholder" style="display:none">해바라기</div>
@@ -586,10 +590,6 @@ footer { background: var(--ink); color: var(--paper); padding: 40px 80px; displa
           <div class="work-placeholder" style="display:none">야생화 정원</div>
           <div class="work-overlay"><div class="work-label">야생화 정원</div></div>
         </div>
-      </div>
-
-      <!-- 2줄: 4개 -->
-      <div class="works-row2">
         <div class="work-item" onclick="lb('work04.jpg')">
           <img src="work04.jpg" alt="애벌레 친구들" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
           <div class="work-placeholder" style="display:none">애벌레 친구들</div>
